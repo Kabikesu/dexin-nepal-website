@@ -69,6 +69,28 @@
     box-shadow: var(--shadow);
 }
 
+/* Desktop: open dropdowns when the mouse hovers over the menu item. */
+@media (min-width: 993px) {
+    .main-nav .nav-dropdown > .nav-dropdown-menu,
+    .main-nav .nav-subdropdown > .nav-submenu {
+        display: none;
+    }
+
+    .main-nav .nav-dropdown:hover > .nav-dropdown-menu,
+    .main-nav .nav-dropdown:focus-within > .nav-dropdown-menu,
+    .main-nav .nav-dropdown[open] > .nav-dropdown-menu,
+    .main-nav .nav-subdropdown:hover > .nav-submenu,
+    .main-nav .nav-subdropdown:focus-within > .nav-submenu,
+    .main-nav .nav-subdropdown[open] > .nav-submenu {
+        display: block;
+    }
+
+    .main-nav .nav-dropdown:hover > summary,
+    .main-nav .nav-subdropdown:hover > summary {
+        color: var(--primary);
+    }
+}
+
 /* ---------- Page hero ---------- */
 .product-page-hero {
     min-height: 460px;
