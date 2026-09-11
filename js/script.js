@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentPage = window.location.pathname.split("/").pop() || "index.html";
         mainNav.innerHTML = `
             <a href="index.html" data-page="index.html">Home</a>
-            <a href="about.html" data-page="about.html">About</a>
+            <a href="about.html" data-page="about.html">About Us</a>
             <details class="nav-dropdown" data-menu="products"><summary>Products</summary><div class="nav-dropdown-menu">
                 <a href="products.html#all-products">All Products</a>
                 <a href="products.html#upcoming-products">Upcoming Products</a>
@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
             </div></details>
             <a href="quality.html" data-page="quality.html">Quality</a>
             <details class="nav-dropdown" data-menu="gallery"><summary>Gallery</summary><div class="nav-dropdown-menu"><a href="gallery.html#image-gallery">Image Gallery</a><a href="gallery.html#video-gallery">Video Gallery</a><a href="gallery.html#corporate-events">Corporate Events</a><a href="gallery.html#news-press">News &amp; Press</a></div></details>
-            <details class="nav-dropdown" data-menu="company"><summary>Company</summary><div class="nav-dropdown-menu"><a href="about.html">About Us</a><a href="careers.html">Careers</a><a href="staff-portal.html">Staff Portal</a></div></details>
+            <details class="nav-dropdown" data-menu="company"><summary>Company</summary><div class="nav-dropdown-menu"><a href="careers.html">Careers</a><a href="staff-portal.html">Staff Portal</a></div></details>
             <a href="contact.html" data-page="contact.html">Contact</a>`;
 
         const activePage = mainNav.querySelector(`[data-page="${currentPage}"]`);
         if (activePage) activePage.classList.add("active");
-        const activeMenus = {"products.html":"products","gallery.html":"gallery","about.html":"company","careers.html":"company","staff-portal.html":"company"};
+        const activeMenus = {"products.html":"products","gallery.html":"gallery","careers.html":"company","staff-portal.html":"company"};
         const activeMenuName = activeMenus[currentPage];
         if (activeMenuName) mainNav.querySelector(`[data-menu="${activeMenuName}"] summary`)?.classList.add("active");
 
@@ -97,61 +97,34 @@ document.addEventListener("DOMContentLoaded", function () {
             card.dataset.category = product.category.toLowerCase();
             card.dataset.status = product.type;
             const image = findProductImage(product, manifest);
-            card.innerHTML = `<div class="product-card-image"><img src="${image}" alt="${product.name}" loading="lazy"></div><div class="product-card-body"><span class="product-card-category">${product.category}</span><span class="product-status ${product.type}">${product.type === "current" ? "Current" : "Upcoming"}</span><h3>${product.name}</h3><p>${product.description}</p><div class="product-card-meta"><span>${product.packaging}</span></div><button class="product-spec-btn" type="button" data-product-id="${product.id}">View Specifications <span>→</span></button></div>`;
+            card.innerHTML = `<div class="product-card-image"><img src="${image}" alt="${product.name}" loading="lazy"></div><div class="product-card-body"><span class="product-card-category">${product.category}</span><span class="product-status ${product.type}">${product.type === "upcoming" ? "Upcoming" : "Current"}</span><h3>${product.name}</h3><p class="product-packaging">${product.packaging}</p><p>${product.description}</p><ul>${product.features.map(feature => `<li>${feature}</li>`).join("")}</ul></div>`;
             catalog.appendChild(card);
         });
-        if (empty) empty.hidden = selected.length !== 0;
+        if (empty) empty.hidden = selected.length > 0;
     }
 
-    async function loadImageManifest() {
-        const response = await fetch("images.json?v=" + Date.now(), {cache:"no-store"});
-        if (!response.ok) throw new Error("Image manifest could not be loaded.");
-        return response.json();
-    }
-
-    function createImageCard(item) {
-        const card = document.createElement("figure"); card.className = "auto-image-card";
-        const image = document.createElement("img"); image.src = item.src; image.alt = item.name || "DXN Manufacturing Nepal"; image.loading = "lazy"; image.decoding = "async";
-        const caption = document.createElement("figcaption"); caption.textContent = item.name || "DXN Manufacturing Nepal"; card.appendChild(image); card.appendChild(caption); return card;
-    }
-
-    async function renderAutomaticImages() {
-        const containers = document.querySelectorAll("[data-image-folder]"); if (!containers.length) return;
-        try { const manifest = await loadImageManifest(); containers.forEach(container => { const folder = (container.dataset.imageFolder || "").replace(/^images\//, "").replace(/\/$/, ""); const images = (manifest.folders || {})[folder] || []; container.innerHTML = ""; images.forEach(item => container.appendChild(createImageCard(item))); }); } catch (error) { console.warn("Automatic image loader:", error.message); }
-    }
-
-    async function initProductCatalogue() {
+    async function loadProductManifest() {
         const catalog = document.getElementById("productCatalog");
         if (!catalog) return;
         let manifest = {folders:{}};
-        try { manifest = await loadImageManifest(); } catch (error) { console.warn("Product images:", error.message); }
-        let filter = "all";
-        const setFilter = value => { filter = value; document.querySelectorAll(".product-filter-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === value)); renderProducts(filter, manifest); document.getElementById("all-products")?.scrollIntoView({behavior:"smooth",block:"start"}); };
-        document.querySelectorAll(".product-filter-btn").forEach(btn => btn.addEventListener("click", () => setFilter(btn.dataset.filter)));
-        document.querySelectorAll("[data-set-filter]").forEach(link => link.addEventListener("click", () => setTimeout(() => setFilter(link.dataset.setFilter), 50)));
-        renderProducts(filter, manifest);
-
-        const modal = document.getElementById("productModal");
-        const closeModal = () => { if (modal) { modal.classList.remove("open"); modal.setAttribute("aria-hidden","true"); document.body.classList.remove("modal-open"); } };
-        document.addEventListener("click", function(event) {
-            const button = event.target.closest(".product-spec-btn");
-            if (!button || !modal) return;
-            const product = productData.find(item => item.id === button.dataset.productId); if (!product) return;
-            document.getElementById("modalProductCategory").textContent = product.category;
-            document.getElementById("modalProductName").textContent = product.name;
-            document.getElementById("modalProductDescription").textContent = product.description;
-            document.getElementById("modalProductPackaging").textContent = product.packaging;
-            document.getElementById("modalProductStatus").textContent = product.type === "current" ? "Current" : "Upcoming";
-            document.getElementById("modalProductImage").src = findProductImage(product, manifest);
-            document.getElementById("modalProductImage").alt = product.name;
-            document.getElementById("modalProductFeatures").innerHTML = product.features.map(feature => `<span>✓ ${feature}</span>`).join("");
-            modal.classList.add("open"); modal.setAttribute("aria-hidden","false"); document.body.classList.add("modal-open");
-        });
-        modal?.querySelectorAll("[data-modal-close]").forEach(element => element.addEventListener("click", closeModal));
-        document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
+        try {
+            const response = await fetch(`images.json?v=${Date.now()}`);
+            if (response.ok) manifest = await response.json();
+        } catch (error) {
+            console.warn("Image manifest unavailable; using pending product images.", error);
+        }
+        const filterButtons = document.querySelectorAll("[data-product-filter]");
+        const initialFilter = document.querySelector("[data-product-filter].active")?.dataset.productFilter || "all";
+        renderProducts(initialFilter, manifest);
+        filterButtons.forEach(button => button.addEventListener("click", function () {
+            filterButtons.forEach(item => item.classList.remove("active"));
+            button.classList.add("active");
+            renderProducts(button.dataset.productFilter, manifest);
+        }));
     }
 
-    renderAutomaticImages();
-    initProductCatalogue();
-    const currentYear = document.querySelector(".current-year"); if (currentYear) currentYear.textContent = new Date().getFullYear();
+    loadProductManifest();
+
+    const year = document.querySelector(".current-year");
+    if (year) year.textContent = new Date().getFullYear();
 });
