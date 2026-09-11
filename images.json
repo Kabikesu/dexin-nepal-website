@@ -3,14 +3,14 @@
   "folders": {
     "factory": [
       {
-        "src": "factory/factory-intro.jpg?v=17de19ad34e2",
+        "src": "images/factory/factory-intro.jpg?v=17de19ad34e2",
         "path": "factory/factory-intro.jpg",
         "name": "Factory Intro",
         "type": "image",
         "version": "17de19ad34e2"
       },
       {
-        "src": "factory/founder.jpg?v=f130f4ac7055",
+        "src": "images/factory/founder.jpg?v=f130f4ac7055",
         "path": "factory/founder.jpg",
         "name": "Founder",
         "type": "image",
@@ -19,7 +19,7 @@
     ],
     "hero": [
       {
-        "src": "hero/factory-main.png?v=4a5f217e8572",
+        "src": "images/hero/factory-main.png?v=4a5f217e8572",
         "path": "hero/factory-main.png",
         "name": "Factory Main",
         "type": "image",
@@ -28,14 +28,14 @@
     ],
     "logo": [
       {
-        "src": "logo/dxn-logo.jpeg?v=f204e9fda960",
+        "src": "images/logo/dxn-logo.jpeg?v=f204e9fda960",
         "path": "logo/dxn-logo.jpeg",
         "name": "Dxn Logo",
         "type": "image",
         "version": "f204e9fda960"
       },
       {
-        "src": "logo/dxn-logo.png?v=390d75125daa",
+        "src": "images/logo/dxn-logo.png?v=390d75125daa",
         "path": "logo/dxn-logo.png",
         "name": "Dxn Logo",
         "type": "image",
@@ -44,27 +44,11 @@
     ],
     "products": [
       {
-        "src": "products/Cordyceys coffe.jpeg?v=d44761d1a34f",
+        "src": "images/products/Cordyceys coffe.jpeg?v=d44761d1a34f",
         "path": "products/Cordyceys coffe.jpeg",
         "name": "Cordyceys Coffe",
         "type": "image",
         "version": "d44761d1a34f"
-      }
-    ],
-    "sustainability": [
-      {
-        "src": "sustainability/sustainability.jpg?v=d93137b3d56c",
-        "path": "sustainability/sustainability.jpg",
-        "name": "Sustainability",
-        "type": "image",
-        "version": "d93137b3d56c"
-      },
-      {
-        "src": "sustainability/sustainability.png?v=2d4851832d04",
-        "path": "sustainability/sustainability.png",
-        "name": "Sustainability",
-        "type": "image",
-        "version": "2d4851832d04"
       }
     ]
   }
