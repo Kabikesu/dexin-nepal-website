@@ -3,477 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Dexin Manufacturing Nepal - Quality manufacturing, innovative products, and sustainable operations in Nepal.">
-
-    <meta name="keywords"
-        content="Dexin Nepal, Dexin Manufacturing Nepal, manufacturing, Nepal factory, Dexin products">
-
+    <meta name="description" content="Dexin Manufacturing Nepal - Quality manufacturing, innovative products, and sustainable operations in Nepal.">
+    <meta name="keywords" content="Dexin Nepal, Dexin Manufacturing Nepal, manufacturing, Nepal factory, Dexin products">
     <meta name="author" content="Dexin Manufacturing Nepal Pvt. Ltd.">
-
     <title>Dexin Manufacturing Nepal Pvt. Ltd.</title>
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo/dxn-logo.png">
-
-    <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/products-gallery.css">
 </head>
-
 <body>
+<header class="site-header">
+    <div class="container header-container">
+        <a href="index.html" class="logo"><img src="images/logo/dxn-logo.png" alt="Dexin Manufacturing Nepal Logo"></a>
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <details class="nav-dropdown"><summary>Products</summary><div class="nav-dropdown-menu">
+                <a href="products.html#all-products">All Products</a>
+                <a href="products.html#new-products">New Products</a>
+                <details class="nav-subdropdown"><summary>Product Categories</summary><div class="nav-submenu">
+                    <a href="products.html#nutraceuticals">Nutraceuticals</a><a href="products.html#coffee">Coffee</a>
+                </div></details>
+                <details class="nav-subdropdown"><summary>Top Products</summary><div class="nav-submenu">
+                    <a href="products.html#dxn-coffee">DXN Coffee</a><a href="products.html#dxn-rg-gl">DXN RG &amp; GL</a><a href="products.html#dxn-spirulina">DXN Spirulina</a><a href="products.html#dxn-cocozhi">DXN Cocozhi</a>
+                </div></details>
+                <details class="nav-subdropdown"><summary>Manufacturing Units</summary><div class="nav-submenu">
+                    <a href="products.html#coffee-unit">Coffee Unit</a><a href="products.html#nutraceutical-unit">Nutraceutical Unit</a>
+                </div></details>
+            </div></details>
+            <a href="quality.html">Quality</a>
+            <details class="nav-dropdown"><summary>Gallery</summary><div class="nav-dropdown-menu">
+                <a href="gallery.html#image-gallery">Image Gallery</a><a href="gallery.html#video-gallery">Video Gallery</a><a href="gallery.html#corporate-events">Corporate Events</a><a href="gallery.html#news-press">News &amp; Press</a>
+            </div></details>
+            <details class="nav-dropdown"><summary>Company</summary><div class="nav-dropdown-menu">
+                <a href="about.html">About Us</a><a href="careers.html">Careers</a><a href="staff-portal.html">Staff Portal</a>
+            </div></details>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
+    </div>
+</header>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
-    <header class="site-header">
-        <div class="container header-container">
-            <!-- Logo -->
-            <a href="index.html" class="logo">
-                <img src="images/logo/dxn-logo.png"
-                     alt="Dexin Manufacturing Nepal Logo">
-            </a>
-
-            <!-- Navigation -->
-            <nav class="main-nav" id="mainNav">
-                <a href="index.html" class="active">Home</a>
-                <a href="about.html">About</a>
-                <a href="manufacturing.html">Manufacturing</a>
-                <a href="products.html">Products</a>
-                <a href="quality.html">Quality</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="careers.html">Careers</a>
-                <a href="staff-portal.html">Staff Portal</a>
-                <a href="contact.html">Contact</a>
-
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button class="menu-toggle"
-                    id="menuToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false">
-
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-
-    <!-- =========================
-         HERO SECTION
-    ========================== -->
-    <main>
+<main>
 
         <section class="hero">
-
             <div class="hero-overlay"></div>
-
             <div class="container hero-content">
-
-                <span class="hero-label">
-                    DEXIN MANUFACTURING NEPAL
-                </span>
-
-                <h1>
-                    Quality Manufacturing<br>
-                    <span>From Nepal to the World</span>
-                </h1>
-
-                <p>
-                    Combining modern manufacturing practices, quality
-                    standards and sustainable operations to deliver
-                    trusted products.
-                </p>
-
+                <span class="hero-label">DEXIN MANUFACTURING NEPAL</span>
+                <h1>Quality Manufacturing<br><span>From Nepal to the World</span></h1>
+                <p>Combining modern manufacturing practices, quality standards and sustainable operations to deliver trusted products.</p>
                 <div class="hero-buttons">
-
-                    <a href="manufacturing.html" class="btn btn-primary">
-                        Explore Our Manufacturing
-                    </a>
-
-                    <a href="about.html" class="btn btn-outline">
-                        Discover Dexin Nepal
-                    </a>
-
+                    <a href="manufacturing.html" class="btn btn-primary">Explore Our Manufacturing</a>
+                    <a href="about.html" class="btn btn-outline">Discover Dexin Nepal</a>
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- =========================
-             INTRODUCTION
-        ========================== -->
         <section class="intro section">
-
             <div class="container intro-grid">
-
-                <div class="section-image">
-
-                    <img src="images/factory/factory-intro.jpg"
-                         alt="Dexin Nepal manufacturing facility"
-                         loading="lazy">
-
-                </div>
-
+                <div class="section-image"><img src="images/factory/factory-intro.jpg" alt="Dexin Nepal manufacturing facility" loading="lazy"></div>
                 <div class="section-content">
-
-                    <span class="section-label">
-                        ABOUT DEXIN NEPAL
-                    </span>
-
-                    <h2>
-                        Building Quality Through
-                        Manufacturing Excellence
-                    </h2>
-
-                    <p>
-                        Dexin Manufacturing Nepal Pvt. Ltd. is committed
-                        to developing a modern manufacturing environment
-                        focused on quality, efficiency and continuous
-                        improvement.
-                    </p>
-
-                    <p>
-                        Our operations combine responsible manufacturing
-                        practices with stringent quality controls to
-                        support the production of trusted DXN products.
-                    </p>
-
-                    <a href="about.html" class="text-link">
-                        Learn More About Us →
-                    </a>
-
+                    <span class="section-label">ABOUT DEXIN NEPAL</span>
+                    <h2>Building Quality Through Manufacturing Excellence</h2>
+                    <p>Dexin Manufacturing Nepal Pvt. Ltd. is committed to developing a modern manufacturing environment focused on quality, efficiency and continuous improvement.</p>
+                    <p>Our operations combine responsible manufacturing practices with stringent quality controls to support the production of trusted DXN products.</p>
+                    <a href="about.html" class="text-link">Learn More About Us →</a>
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- =========================
-             MANUFACTURING
-        ========================== -->
         <section class="manufacturing-preview section section-light">
-
             <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-label">
-                        OUR CAPABILITIES
-                    </span>
-
-                    <h2>
-                        Modern Manufacturing,
-                        Built on Quality
-                    </h2>
-
-                    <p>
-                        Our manufacturing operations are designed around
-                        quality, safety, efficiency and consistent
-                        production standards.
-                    </p>
-
-                </div>
-
-
+                <div class="section-heading"><span class="section-label">OUR CAPABILITIES</span><h2>Modern Manufacturing, Built on Quality</h2><p>Our manufacturing operations are designed around quality, safety, efficiency and consistent production standards.</p></div>
                 <div class="feature-grid">
-
-                    <article class="feature-card">
-
-                        <div class="feature-icon">
-                            01
-                        </div>
-
-                        <h3>
-                            Modern Facilities
-                        </h3>
-
-                        <p>
-                            Purpose-built manufacturing facilities
-                            designed to support efficient and controlled
-                            production.
-                        </p>
-
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-icon">
-                            02
-                        </div>
-                        <h3>
-                            Quality Control
-                        </h3>
-                        <p>
-                            Quality-focused processes throughout
-                            manufacturing to maintain product consistency
-                            and reliability.
-                        </p>
-                    </article>
-
-
-                    <article class="feature-card">
-                        <div class="feature-icon">
-                            03
-                        </div>
-                        <h3>
-                            Skilled People
-                        </h3>
-                        <p>
-                            Dedicated teams working together to maintain
-                            high standards across manufacturing operations.
-                        </p>
-
-                    </article>
-
-
-                    <article class="feature-card">
-
-                        <div class="feature-icon">
-                            04
-                        </div>
-                        <h3>
-                            Continuous Improvement
-                        </h3>
-
-                        <p>
-                            A commitment to improving processes, efficiency
-                            and manufacturing performance.
-                        </p>
-                    </article>
+                    <article class="feature-card"><div class="feature-icon">01</div><h3>Modern Facilities</h3><p>Purpose-built manufacturing facilities designed to support efficient and controlled production.</p></article>
+                    <article class="feature-card"><div class="feature-icon">02</div><h3>Quality Control</h3><p>Quality-focused processes throughout manufacturing to maintain product consistency and reliability.</p></article>
+                    <article class="feature-card"><div class="feature-icon">03</div><h3>Skilled People</h3><p>Dedicated teams working together to maintain high standards across manufacturing operations.</p></article>
+                    <article class="feature-card"><div class="feature-icon">04</div><h3>Continuous Improvement</h3><p>A commitment to improving processes, efficiency and manufacturing performance.</p></article>
                 </div>
-                <div class="center-button">
-
-                    <a href="manufacturing.html" class="btn btn-primary">
-                        Explore Manufacturing
-                    </a>
-                </div>
+                <div class="center-button"><a href="manufacturing.html" class="btn btn-primary">Explore Manufacturing</a></div>
             </div>
         </section>
 
+        <section class="quality-section section"><div class="container quality-grid"><div class="section-content"><span class="section-label">QUALITY &amp; STANDARDS</span><h2>Quality at Every Stage</h2><p>Quality is integrated into every stage of our manufacturing process — from raw materials and production to testing, packaging and finished goods.</p><ul class="quality-list"><li><span>✓</span>Quality-focused manufacturing processes</li><li><span>✓</span>Controlled production environment</li><li><span>✓</span>Product quality monitoring</li><li><span>✓</span>Continuous improvement</li></ul><a href="quality.html" class="text-link">Discover Our Quality Standards →</a></div><div class="section-image"><img src="images/quality/quality-main.jpg" alt="Dexin Nepal quality control" loading="lazy"></div></div></section>
 
-        <!-- =========================
-             QUALITY
-        ========================== -->
-        <section class="quality-section section">
-            <div class="container quality-grid">
-                <div class="section-content">
-                    <span class="section-label">
-                        QUALITY & STANDARDS
-                    </span>
-                    <h2>
-                        Quality at Every Stage
-                    </h2>
-                    <p>
-                        Quality is integrated into every stage of our
-                        manufacturing process — from raw materials and
-                        production to testing, packaging and finished goods.
-                    </p>
-                    <ul class="quality-list">
-                        <li>
-                            <span>✓</span>
-                            Quality-focused manufacturing processes
-                        </li>
-                        <li>
-                            <span>✓</span>
-                            Controlled production environment
-                        </li>
-                        <li>
-                            <span>✓</span>
-                            Product quality monitoring
-                        </li>
-                        <li>
-                            <span>✓</span>
-                            Continuous improvement
-                        </li>
-                    </ul>
-                    <a href="quality.html" class="text-link">
-                        Discover Our Quality Standards →
-                    </a>
+        <section class="products-preview section section-light"><div class="container"><div class="section-heading"><span class="section-label">OUR PRODUCTS</span><h2>Manufactured With Care</h2><p>Explore products manufactured with a focus on quality, consistency and customer trust.</p></div><div class="product-grid"><article class="product-card"><img src="images/products/product-01.jpg" alt="Dexin product" loading="lazy"><div class="product-card-content"><h3>Product Category</h3><p>Discover our range of manufactured products.</p><a href="products.html">View Products →</a></div></article><article class="product-card"><img src="images/products/product-02.jpg" alt="Dexin product" loading="lazy"><div class="product-card-content"><h3>Manufacturing Excellence</h3><p>Quality and consistency across our product range.</p><a href="products.html">View Products →</a></div></article><article class="product-card"><img src="images/products/product-03.jpg" alt="Dexin product" loading="lazy"><div class="product-card-content"><h3>Trusted Quality</h3><p>Products manufactured under controlled processes.</p><a href="products.html">View Products →</a></div></article></div></div></section>
 
-                </div>
-                <div class="section-image">
-                    <img src="images/quality/quality-main.jpg"
-                         alt="Dexin Nepal quality control"
-                         loading="lazy">
-                </div>
-            </div>
-        </section>
+        <section class="cta-section"><div class="container cta-content"><div><span class="section-label">CONNECT WITH US</span><h2>Want to Know More About DXN Nepal?</h2><p>Contact our team to learn more about our manufacturing capabilities and operations.</p></div><a href="contact.html" class="btn btn-primary">Contact Us</a></div></section>
+</main>
 
-
-       
-
-
-        <!-- =========================
-             PRODUCTS
-        ========================== -->
-        <section class="products-preview section section-light">
-            <div class="container">
-                <div class="section-heading">
-                    <span class="section-label">
-                        OUR PRODUCTS
-                    </span>
-                    <h2>
-                        Manufactured With Care
-                    </h2>
-                    <p>
-                        Explore products manufactured with a focus on
-                        quality, consistency and customer trust.
-                    </p>
-                </div>
-                <div class="product-grid">
-                    <article class="product-card">
-                        <img src="images/products/product-01.jpg"
-                             alt="Dexin product"
-                             loading="lazy">
-                        <div class="product-card-content">
-                            <h3>
-                                Product Category
-                            </h3>
-                            <p>
-                                Discover our range of manufactured products.
-                            </p>
-                            <a href="products.html">
-                                View Products →
-                            </a>
-                        </div>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/products/product-02.jpg"
-                             alt="Dexin product"
-                             loading="lazy">
-                        <div class="product-card-content">
-                            <h3>
-                                Manufacturing Excellence
-                            </h3>
-                            <p>
-                                Quality and consistency across our product
-                                range.
-                            </p>
-
-                            <a href="products.html">
-                                View Products →
-                            </a>
-                        </div>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/products/product-03.jpg"
-                             alt="Dexin product"
-                             loading="lazy">
-                        <div class="product-card-content">
-                            <h3>
-                                Trusted Quality
-                            </h3>
-                            <p>
-                                Products manufactured under controlled
-                                processes.
-                            </p>
-                            <a href="products.html">
-                                View Products →
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- =========================
-             CALL TO ACTION
-        ========================== -->
-        <section class="cta-section">
-
-            <div class="container cta-content">
-                <div>
-                    <span class="section-label">
-                        CONNECT WITH US
-                    </span>
-                    <h2>
-                        Want to Know More About DXN Nepal?
-                    </h2>
-                    <p>
-                        Contact our team to learn more about our
-                        manufacturing capabilities and operations.
-                    </p>
-                </div>
-                <a href="contact.html"
-                   class="btn btn-primary">
-                    Contact Us
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-about">
-                <img src="images/logo/dxn-logo.png"
-                     alt="Dexin Manufacturing Nepal Logo"
-                     class="footer-logo">
-                <p>
-                    Dexin Manufacturing Nepal Pvt. Ltd.
-                </p>
-                <p>
-                    Quality manufacturing and responsible operations
-                    from Nepal.
-                </p>
-            </div>
-            <div class="footer-links">
-                <h3>
-                    Quick Links
-                </h3>
-                <a href="about.html">About</a>
-                <a href="manufacturing.html">Manufacturing</a>
-                <a href="products.html">Products</a>
-                <a href="quality.html">Quality</a>
-            </div>
-            <div class="footer-links">
-                <h3>
-                    Explore
-                </h3>
-                <a href="gallery.html">Gallery</a>
-                <a href="careers.html">Careers</a>
-                <a href="contact.html">Contact</a>
-                <a href="staff-portal.html">Staff Portal</a>
-            </div>
-            <div class="footer-contact">
-                <h3>
-                    Contact
-                </h3>
-                <p>
-                    Dexin Manufacturing Nepal Pvt. Ltd.
-                </p>
-                <p>
-                    Nepal
-                </p>
-                <a href="contact.html">
-                    Contact Our Team →
-                </a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-               <p>
-    © <span class="current-year"></span>
-    Dexin Manufacturing Nepal Pvt. Ltd.
-    All Rights Reserved.
-</p>
-            </div>
-        </div>
-    </footer>
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
-
+<footer class="site-footer"><div class="container footer-grid"><div class="footer-about"><img src="images/logo/dxn-logo.png" alt="Dexin Manufacturing Nepal Logo" class="footer-logo"><p>Dexin Manufacturing Nepal Pvt. Ltd.</p><p>Quality manufacturing and responsible operations from Nepal.</p></div><div class="footer-links"><h3>Quick Links</h3><a href="about.html">About</a><a href="products.html">Products</a><a href="quality.html">Quality</a></div><div class="footer-links"><h3>Explore</h3><a href="gallery.html">Gallery</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a><a href="staff-portal.html">Staff Portal</a></div><div class="footer-contact"><h3>Contact</h3><p>Dexin Manufacturing Nepal Pvt. Ltd.</p><p>Nepal</p><a href="contact.html">Contact Our Team →</a></div></div><div class="footer-bottom"><div class="container"><p>© <span class="current-year"></span> Dexin Manufacturing Nepal Pvt. Ltd. All Rights Reserved.</p></div></div></footer>
+<script src="js/script.js"></script>
 </body>
 </html>
