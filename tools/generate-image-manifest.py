@@ -6,6 +6,7 @@ import re
 ROOT = Path("images")
 OUTPUT = Path("images.json")
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"}
+EXCLUDED_FOLDERS = {"sustainability"}
 
 
 def human_name(stem: str) -> str:
@@ -31,9 +32,13 @@ if ROOT.exists():
         if folder == ".":
             folder = ""
 
+        folder_parts = set(folder.split("/")) if folder else set()
+        if folder_parts & EXCLUDED_FOLDERS:
+            continue
+
         version = file_version(path)
         item = {
-            "src": relative + "?v=" + version,
+            "src": "images/" + relative + "?v=" + version,
             "path": relative,
             "name": human_name(path.stem),
             "type": "image",
