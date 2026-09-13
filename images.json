@@ -17,15 +17,6 @@
         "version": "f130f4ac7055"
       }
     ],
-    "gallery/events": [
-      {
-        "src": "images/gallery/events/Enviroment Day (1).mp4?v=d7d34188bb19",
-        "path": "gallery/events/Enviroment Day (1).mp4",
-        "name": "Enviroment Day (1)",
-        "type": "video",
-        "version": "d7d34188bb19"
-      }
-    ],
     "gallery/events/Environment Day": [
       {
         "src": "images/gallery/events/Environment Day/01.jpeg?v=d1b6bc59f1e7",
