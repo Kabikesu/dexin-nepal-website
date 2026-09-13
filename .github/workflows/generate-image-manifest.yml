@@ -26,17 +26,46 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Generate image manifest
+      - name: Move legacy Environment Day photos into event folder
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          source = Path('images/gallery/events')
+          target = source / 'Environment Day'
+          target.mkdir(parents=True, exist_ok=True)
+
+          legacy = []
+          for path in source.iterdir():
+              if not path.is_file():
+                  continue
+              if not re.match(r'^Enviroment Day\s*\(\d+\)\.(jpg|jpeg|png|webp|gif)$', path.name, re.I):
+                  continue
+              number = int(re.search(r'\((\d+)\)', path.stem).group(1))
+              legacy.append((number, path))
+
+          for index, (number, path) in enumerate(sorted(legacy), start=1):
+              extension = path.suffix.lower()
+              destination = target / f'{index:02d}{extension}'
+              if destination.exists():
+                  destination.unlink()
+              path.rename(destination)
+
+          print(f'Migrated {len(legacy)} legacy Environment Day photos.')
+          PY
+
+      - name: Generate image and video manifest
         run: python tools/generate-image-manifest.py
 
-      - name: Commit updated manifest
+      - name: Commit updated media structure and manifest
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add images.json
+          git add images/gallery/events images.json
           if git diff --cached --quiet; then
-            echo "No manifest changes to commit."
+            echo "No media structure or manifest changes."
           else
-            git commit -m "Auto-update image manifest"
+            git commit -m "Organize gallery media and update manifest"
             git push
           fi
