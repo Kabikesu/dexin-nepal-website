@@ -5,7 +5,9 @@ import re
 
 ROOT = Path("images")
 OUTPUT = Path("images.json")
-ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"}
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"}
+VIDEO_EXTENSIONS = {".mp4", ".webm", ".ogg", ".mov", ".m4v"}
+ALLOWED_EXTENSIONS = IMAGE_EXTENSIONS | VIDEO_EXTENSIONS
 EXCLUDED_FOLDERS = {"sustainability"}
 
 
@@ -37,11 +39,12 @@ if ROOT.exists():
             continue
 
         version = file_version(path)
+        media_type = "video" if path.suffix.lower() in VIDEO_EXTENSIONS else "image"
         item = {
             "src": "images/" + relative + "?v=" + version,
             "path": relative,
             "name": human_name(path.stem),
-            "type": "image",
+            "type": media_type,
             "version": version,
         }
         folders.setdefault(folder, []).append(item)
@@ -56,4 +59,4 @@ OUTPUT.write_text(
     encoding="utf-8",
 )
 
-print(f"Generated {OUTPUT} with {sum(len(items) for items in folders.values())} images in {len(folders)} folders.")
+print(f"Generated {OUTPUT} with {sum(len(items) for items in folders.values())} media files in {len(folders)} folders.")
