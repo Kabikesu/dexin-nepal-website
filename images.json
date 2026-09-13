@@ -42,6 +42,15 @@
         "version": "390d75125daa"
       }
     ],
+    "products/coffee": [
+      {
+        "src": "images/products/coffee/Cordyceys coffe.jpeg?v=d44761d1a34f",
+        "path": "products/coffee/Cordyceys coffe.jpeg",
+        "name": "Cordyceys Coffe",
+        "type": "image",
+        "version": "d44761d1a34f"
+      }
+    ],
     "products": [
       {
         "src": "images/products/Cordyceys coffe.jpeg?v=d44761d1a34f",
