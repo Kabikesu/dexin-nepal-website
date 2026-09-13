@@ -50,8 +50,7 @@
         if (parts.length > 1 && parts[0]) return parts[0];
 
         // Transition support for existing flat files such as
-        // "Enviroment Day (1).jpeg". These become one temporary album
-        // until the files are moved into their event folder.
+        // "Enviroment Day (1).jpeg".
         const stem = String(item?.name || parts[0] || "Image").trim();
         const grouped = stem.replace(/\s*\(\d+\)\s*$/, "").trim();
         return grouped || "General Gallery";
@@ -73,6 +72,19 @@
                 media: media.sort((a, b) => String(a.path).localeCompare(String(b.path), undefined, { numeric: true }))
             }))
             .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    function collectRootMedia(manifest, rootFolder) {
+        const folders = manifest.folders || {};
+        const rootItems = [];
+
+        Object.entries(folders).forEach(([folder, items]) => {
+            if (folder === rootFolder || folder.startsWith(`${rootFolder}/`)) {
+                (items || []).forEach(item => rootItems.push(item));
+            }
+        });
+
+        return rootItems;
     }
 
     function createFolderView(container) {
@@ -180,7 +192,7 @@
     function initializeGallery(manifest) {
         document.querySelectorAll("[data-media-root]").forEach(container => {
             const rootFolder = container.dataset.mediaRoot;
-            const items = (manifest.folders || {})[rootFolder] || [];
+            const items = collectRootMedia(manifest, rootFolder);
 
             container.innerHTML = "";
             renderFolderGallery(container, rootFolder, items, {
