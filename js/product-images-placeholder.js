@@ -6,10 +6,12 @@
    1. Keep a real product image when it loads successfully.
    2. If the real image is missing or fails to load, show a
       clean placeholder containing the product name.
+   3. Keep product descriptions free from obsolete image-update
+      messaging when a real image is already available.
 
    The product catalogue in script.js is responsible for
-   selecting the real image from images.json. This file only
-   handles the final load/error fallback.
+   selecting the real image from images.json. This file handles
+   the final image load/error fallback and presentation cleanup.
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -71,8 +73,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /*
+       Product descriptions should describe the product, not the
+       temporary state of its image. If a product already has a
+       real image, remove obsolete wording such as "image can be
+       replaced/updated" from the visible modal description.
+    */
+    function cleanProductDescription() {
+        const description = document.getElementById("modalProductDescription");
+        const image = document.getElementById("modalProductImage");
+        if (!description || !image) return;
+
+        const text = description.textContent || "";
+        if (!text) return;
+
+        const cleaned = text
+            .replace(/\s*The existing Nepal product image is retained and can be replaced with an updated product image at any time\.?/gi, "")
+            .replace(/\s*The product image can be replaced with an updated product image at any time\.?/gi, "")
+            .replace(/\s*The image will be updated soon\.?/gi, "")
+            .replace(/\s*Product image will be updated soon\.?/gi, "")
+            .replace(/\s{2,}/g, " ")
+            .trim();
+
+        if (cleaned !== text) description.textContent = cleaned;
+    }
+
     function scanImages(root = document) {
         root.querySelectorAll?.(".product-card-image img, #modalProductImage").forEach(watchImage);
+        cleanProductDescription();
     }
 
     const catalog = document.getElementById("productCatalog");
@@ -86,6 +114,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         observer.observe(catalog, { childList: true, subtree: true });
+    }
+
+    /* Watch the modal as well because script.js updates its
+       contents only when a product is opened. */
+    const modal = document.getElementById("productModal");
+    if (modal) {
+        const modalObserver = new MutationObserver(() => {
+            scanImages(modal);
+        });
+        modalObserver.observe(modal, { childList: true, subtree: true, characterData: true });
     }
 
     scanImages();
