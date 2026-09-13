@@ -50,15 +50,6 @@
         "type": "image",
         "version": "d44761d1a34f"
       }
-    ],
-    "products": [
-      {
-        "src": "images/products/Cordyceys coffe.jpeg?v=d44761d1a34f",
-        "path": "products/Cordyceys coffe.jpeg",
-        "name": "Cordyceys Coffe",
-        "type": "image",
-        "version": "d44761d1a34f"
-      }
     ]
   }
 }
