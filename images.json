@@ -369,6 +369,43 @@
         "version": "50a709fd484a"
       }
     ],
+    "gallery/events/Inauguration Day": [
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration 2.png?v=17de19ad34e2",
+        "path": "gallery/events/Inauguration Day/Inauguration 2.png",
+        "name": "Inauguration 2",
+        "type": "image",
+        "version": "17de19ad34e2"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration12.JPG?v=4125c5ddace9",
+        "path": "gallery/events/Inauguration Day/Inauguration12.JPG",
+        "name": "Inauguration12",
+        "type": "image",
+        "version": "4125c5ddace9"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration15.png?v=e6778ba8aa57",
+        "path": "gallery/events/Inauguration Day/Inauguration15.png",
+        "name": "Inauguration15",
+        "type": "image",
+        "version": "e6778ba8aa57"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration37.png?v=9e6e7156ecbf",
+        "path": "gallery/events/Inauguration Day/Inauguration37.png",
+        "name": "Inauguration37",
+        "type": "image",
+        "version": "9e6e7156ecbf"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration56.png?v=92af346251b4",
+        "path": "gallery/events/Inauguration Day/Inauguration56.png",
+        "name": "Inauguration56",
+        "type": "image",
+        "version": "92af346251b4"
+      }
+    ],
     "hero": [
       {
         "src": "images/hero/factory-main.png?v=4a5f217e8572",
