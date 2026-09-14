@@ -448,6 +448,232 @@
         "type": "image",
         "version": "6607b93030d7"
       }
+    ],
+    "staff": [
+      {
+        "src": "images/staff/aakash-agrahari.jpeg?v=0eb2139cb5b1",
+        "path": "staff/aakash-agrahari.jpeg",
+        "name": "Aakash Agrahari",
+        "type": "image",
+        "version": "0eb2139cb5b1"
+      },
+      {
+        "src": "images/staff/aastha-shrivastav.jpeg?v=a18db48e94ab",
+        "path": "staff/aastha-shrivastav.jpeg",
+        "name": "Aastha Shrivastav",
+        "type": "image",
+        "version": "a18db48e94ab"
+      },
+      {
+        "src": "images/staff/achal-acharya.png?v=8fb98e8d513d",
+        "path": "staff/achal-acharya.png",
+        "name": "Achal Acharya",
+        "type": "image",
+        "version": "8fb98e8d513d"
+      },
+      {
+        "src": "images/staff/arun-kumar-nau.png?v=0b7dcb28540f",
+        "path": "staff/arun-kumar-nau.png",
+        "name": "Arun Kumar Nau",
+        "type": "image",
+        "version": "0b7dcb28540f"
+      },
+      {
+        "src": "images/staff/ashis-mishra.jpeg?v=234e7f6c03fc",
+        "path": "staff/ashis-mishra.jpeg",
+        "name": "Ashis Mishra",
+        "type": "image",
+        "version": "234e7f6c03fc"
+      },
+      {
+        "src": "images/staff/bandana-mishra.png?v=2dc9a4ba4697",
+        "path": "staff/bandana-mishra.png",
+        "name": "Bandana Mishra",
+        "type": "image",
+        "version": "2dc9a4ba4697"
+      },
+      {
+        "src": "images/staff/bikash-chamar.png?v=7358da42455a",
+        "path": "staff/bikash-chamar.png",
+        "name": "Bikash Chamar",
+        "type": "image",
+        "version": "7358da42455a"
+      },
+      {
+        "src": "images/staff/bimal-sinjali-magar.jpeg?v=16b468f0afaf",
+        "path": "staff/bimal-sinjali-magar.jpeg",
+        "name": "Bimal Sinjali Magar",
+        "type": "image",
+        "version": "16b468f0afaf"
+      },
+      {
+        "src": "images/staff/bivash-tiwari.jpeg?v=7313bcf31cbd",
+        "path": "staff/bivash-tiwari.jpeg",
+        "name": "Bivash Tiwari",
+        "type": "image",
+        "version": "7313bcf31cbd"
+      },
+      {
+        "src": "images/staff/brijesh-thakur.png?v=f9e0aff39ffe",
+        "path": "staff/brijesh-thakur.png",
+        "name": "Brijesh Thakur",
+        "type": "image",
+        "version": "f9e0aff39ffe"
+      },
+      {
+        "src": "images/staff/chandra-kumar-tharu.jpeg?v=752a4fbc7f77",
+        "path": "staff/chandra-kumar-tharu.jpeg",
+        "name": "Chandra Kumar Tharu",
+        "type": "image",
+        "version": "752a4fbc7f77"
+      },
+      {
+        "src": "images/staff/dayaram-gaire.jpeg?v=4c87b1432bb1",
+        "path": "staff/dayaram-gaire.jpeg",
+        "name": "Dayaram Gaire",
+        "type": "image",
+        "version": "4c87b1432bb1"
+      },
+      {
+        "src": "images/staff/deep-kumar-chaudhar.jpeg?v=7a1d5fcd73f3",
+        "path": "staff/deep-kumar-chaudhar.jpeg",
+        "name": "Deep Kumar Chaudhar",
+        "type": "image",
+        "version": "7a1d5fcd73f3"
+      },
+      {
+        "src": "images/staff/dipesh-chaudhary.jpeg?v=9448aedc3a1c",
+        "path": "staff/dipesh-chaudhary.jpeg",
+        "name": "Dipesh Chaudhary",
+        "type": "image",
+        "version": "9448aedc3a1c"
+      },
+      {
+        "src": "images/staff/durgadas-mishra.png?v=7fae4f8d4946",
+        "path": "staff/durgadas-mishra.png",
+        "name": "Durgadas Mishra",
+        "type": "image",
+        "version": "7fae4f8d4946"
+      },
+      {
+        "src": "images/staff/executive-chairman.jpg?v=f130f4ac7055",
+        "path": "staff/executive-chairman.jpg",
+        "name": "Executive Chairman",
+        "type": "image",
+        "version": "f130f4ac7055"
+      },
+      {
+        "src": "images/staff/goverdhan-nau.jpeg?v=2797465dba1f",
+        "path": "staff/goverdhan-nau.jpeg",
+        "name": "Goverdhan Nau",
+        "type": "image",
+        "version": "2797465dba1f"
+      },
+      {
+        "src": "images/staff/group pic.jpeg?v=e53c503ed727",
+        "path": "staff/group pic.jpeg",
+        "name": "Group Pic",
+        "type": "image",
+        "version": "e53c503ed727"
+      },
+      {
+        "src": "images/staff/kamal ji.jpeg?v=57406f8e6cf0",
+        "path": "staff/kamal ji.jpeg",
+        "name": "Kamal Ji",
+        "type": "image",
+        "version": "57406f8e6cf0"
+      },
+      {
+        "src": "images/staff/Kamla ghimre.png?v=d34f7da726f0",
+        "path": "staff/Kamla ghimre.png",
+        "name": "Kamla Ghimre",
+        "type": "image",
+        "version": "d34f7da726f0"
+      },
+      {
+        "src": "images/staff/keshav-thakur.jpeg?v=92a4b262613a",
+        "path": "staff/keshav-thakur.jpeg",
+        "name": "Keshav Thakur",
+        "type": "image",
+        "version": "92a4b262613a"
+      },
+      {
+        "src": "images/staff/madhav-belbaase.png?v=b8c9b9d319ce",
+        "path": "staff/madhav-belbaase.png",
+        "name": "Madhav Belbaase",
+        "type": "image",
+        "version": "b8c9b9d319ce"
+      },
+      {
+        "src": "images/staff/nitika-shrivastav.jpeg?v=79fbabd25014",
+        "path": "staff/nitika-shrivastav.jpeg",
+        "name": "Nitika Shrivastav",
+        "type": "image",
+        "version": "79fbabd25014"
+      },
+      {
+        "src": "images/staff/rakesh-karn.jpeg?v=143696a42b47",
+        "path": "staff/rakesh-karn.jpeg",
+        "name": "Rakesh Karn",
+        "type": "image",
+        "version": "143696a42b47"
+      },
+      {
+        "src": "images/staff/ram-kumar-chauhan.png?v=bd963a98023e",
+        "path": "staff/ram-kumar-chauhan.png",
+        "name": "Ram Kumar Chauhan",
+        "type": "image",
+        "version": "bd963a98023e"
+      },
+      {
+        "src": "images/staff/ramraj-chaudhary.png?v=01c207c70210",
+        "path": "staff/ramraj-chaudhary.png",
+        "name": "Ramraj Chaudhary",
+        "type": "image",
+        "version": "01c207c70210"
+      },
+      {
+        "src": "images/staff/ravikant-shukla.png?v=83f0f8fa2f9a",
+        "path": "staff/ravikant-shukla.png",
+        "name": "Ravikant Shukla",
+        "type": "image",
+        "version": "83f0f8fa2f9a"
+      },
+      {
+        "src": "images/staff/regional-head.png?v=de47bf855b02",
+        "path": "staff/regional-head.png",
+        "name": "Regional Head",
+        "type": "image",
+        "version": "de47bf855b02"
+      },
+      {
+        "src": "images/staff/resham-kumar-raut.jpeg?v=9f5e12955c25",
+        "path": "staff/resham-kumar-raut.jpeg",
+        "name": "Resham Kumar Raut",
+        "type": "image",
+        "version": "9f5e12955c25"
+      },
+      {
+        "src": "images/staff/sandeep-chaudhary.png?v=e738d2835f9f",
+        "path": "staff/sandeep-chaudhary.png",
+        "name": "Sandeep Chaudhary",
+        "type": "image",
+        "version": "e738d2835f9f"
+      },
+      {
+        "src": "images/staff/special-assistance.jpeg?v=b392de4998a6",
+        "path": "staff/special-assistance.jpeg",
+        "name": "Special Assistance",
+        "type": "image",
+        "version": "b392de4998a6"
+      },
+      {
+        "src": "images/staff/surajkant-tripathi.jpeg?v=3d84d96fb897",
+        "path": "staff/surajkant-tripathi.jpeg",
+        "name": "Surajkant Tripathi",
+        "type": "image",
+        "version": "3d84d96fb897"
+      }
     ]
   }
 }
