@@ -334,6 +334,41 @@
         "name": "Inauguration56",
         "type": "image",
         "version": "92af346251b4"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration57.png?v=79472e457074",
+        "path": "gallery/events/Inauguration Day/Inauguration57.png",
+        "name": "Inauguration57",
+        "type": "image",
+        "version": "79472e457074"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration63.png?v=458bbe83a064",
+        "path": "gallery/events/Inauguration Day/Inauguration63.png",
+        "name": "Inauguration63",
+        "type": "image",
+        "version": "458bbe83a064"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration69.jpg?v=4d10690cf1f5",
+        "path": "gallery/events/Inauguration Day/Inauguration69.jpg",
+        "name": "Inauguration69",
+        "type": "image",
+        "version": "4d10690cf1f5"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration80.jpg?v=dddb8ee8e2f7",
+        "path": "gallery/events/Inauguration Day/Inauguration80.jpg",
+        "name": "Inauguration80",
+        "type": "image",
+        "version": "dddb8ee8e2f7"
+      },
+      {
+        "src": "images/gallery/events/Inauguration Day/Inauguration82.jpg?v=7313695ddf6a",
+        "path": "gallery/events/Inauguration Day/Inauguration82.jpg",
+        "name": "Inauguration82",
+        "type": "image",
+        "version": "7313695ddf6a"
       }
     ],
     "hero": [
