@@ -398,11 +398,32 @@
     ],
     "products/coffee": [
       {
+        "src": "images/products/coffee/Cocozhi.jpg?v=14b444ea4fba",
+        "path": "products/coffee/Cocozhi.jpg",
+        "name": "Cocozhi",
+        "type": "image",
+        "version": "14b444ea4fba"
+      },
+      {
+        "src": "images/products/coffee/Cordyceps Coffee 3 in 1.jpg?v=ee2d7a943d8a",
+        "path": "products/coffee/Cordyceps Coffee 3 in 1.jpg",
+        "name": "Cordyceps Coffee 3 In 1",
+        "type": "image",
+        "version": "ee2d7a943d8a"
+      },
+      {
         "src": "images/products/coffee/Cordyceys coffe.jpeg?v=d44761d1a34f",
         "path": "products/coffee/Cordyceys coffe.jpeg",
         "name": "Cordyceys Coffe",
         "type": "image",
         "version": "d44761d1a34f"
+      },
+      {
+        "src": "images/products/coffee/Lingzhi Coffee 3 in 1.jpg?v=1df9abdecba4",
+        "path": "products/coffee/Lingzhi Coffee 3 in 1.jpg",
+        "name": "Lingzhi Coffee 3 In 1",
+        "type": "image",
+        "version": "1df9abdecba4"
       }
     ]
   }
