@@ -1,0 +1,21 @@
+{
+  "leadership": [
+    {"name":"Datuk Dr Lim Siow Jin","role":"Executive Chairman","photo":"images/staff/executive-chairman.jpg"},
+    {"name":"Mr. Rajesh Savera","role":"Special Assistance to Executive Chairman","photo":"images/staff/special-assistance.jpg"},
+    {"name":"Mr. Giri Vijayan","role":"Regional Head of Factories","photo":"images/staff/regional-head.jpg"},
+    {"name":"Mr. Rakesh Kumar Karn","role":"Factory PIC Nepal","photo":"images/staff/rakesh-karn.jpg","class":"primary"},
+    {"name":"Mr. Brijesh Kumar Thakur","role":"Deputy FPIC","photo":"images/staff/brijesh-thakur.jpg","class":"secondary"}
+  ],
+  "departments": [
+    {"name":"HR & Admin","head":{"name":"Mr. Bhuwan Acharya","role":"HR & Admin","photo":"images/staff/bhuwan-acharya.jpg"},"members":[{"name":"Mr. Durgadas Mishra","role":"Admin Officer","photo":"images/staff/durgadas-mishra.jpg"},{"name":"Mr. Ramraj Chaudhary","role":"Office Assistant","photo":"images/staff/ramraj-chaudhary.jpg"},{"name":"Mrs. Kamala Ghimire","role":"Housekeeping","photo":"images/staff/kamala-ghimire.jpg"},{"name":"Mr. Madhav Belbaase","role":"Driver","photo":"images/staff/madhav-belbaase.jpg"},{"name":"Mr. Ashis Kumar Mishra","role":"HR Officer","photo":"images/staff/ashis-mishra.jpg"}]},
+    {"name":"IT","head":{"name":"Mr. Keshav Kumar Thakur","role":"IT Officer","photo":"images/staff/keshav-thakur.jpg"},"members":[]},
+    {"name":"Engineering","head":{"name":"Mr. Surajkant Mani Tripathi","role":"Engineering","photo":"images/staff/surajkant-tripathi.jpg"},"members":[]},
+    {"name":"Procurement","head":{"name":"Mr. Achal Acharya","role":"Procurement","photo":"images/staff/achal-acharya.jpg"},"members":[{"name":"Mr. Aakash Agrahari","role":"Procurement Executive","photo":"images/staff/aakash-agrahari.jpg"},{"name":"Mr. Goverdhan Nau","role":"Procurement Assistant","photo":"images/staff/goverdhan-nau.jpg"}]},
+    {"name":"Utility","head":{"name":"Mr. Dipesh Chaudhary","role":"Utility In-charge","photo":"images/staff/dipesh-chaudhary.jpg"},"members":[{"name":"Mr. Bivash Tiwari","role":"Electrical Tech Executive","photo":"images/staff/bivash-tiwari.jpg"},{"name":"Mr. Chandra Kumar Tharu","role":"Electrical Technician","photo":"images/staff/chandra-kumar-tharu.jpg"},{"name":"Mr. Bikash Chamar","role":"Electrical Assistant","photo":"images/staff/bikash-chamar.jpg"}]},
+    {"name":"Finance","head":{"name":"Mr. Dayaram Gaire","role":"Finance Head","photo":"images/staff/dayaram-gaire.jpg"},"members":[{"name":"Mr. Deep Kumar Chaudhar","role":"Finance Executive","photo":"images/staff/deep-kumar-chaudhar.jpg"},{"name":"Mrs. Nitika Shirvastav","role":"Finance","photo":"images/staff/nitika-shrivastav.jpg"}]},
+    {"name":"Warehouse","head":{"name":"Mr. Ravikant Shukla","role":"Warehouse Executive","photo":"images/staff/ravikant-shukla.jpg"},"members":[]},
+    {"name":"Production","head":null,"groups":[{"name":"Coffee Unit","head":{"name":"Mr. Kamal Ghimre","role":"Production Executive","photo":"images/staff/kamal-ghimre.jpg"},"members":[{"name":"Mr. Arun Kumar Nau","role":"Operator","photo":"images/staff/arun-kumar-nau.jpg"},{"name":"Mr. Ram Kumar Chauhan","role":"Semi Skilled Operator","photo":"images/staff/ram-kumar-chauhan.jpg"},{"name":"Mrs. Bandana Mishra","role":"Sr. Packing Assistant","photo":"images/staff/bandana-mishra.jpg"}]},{"name":"Nutra Unit","head":{"name":"Mr. Rajendra Lodh","role":"Production Officer","photo":"images/staff/rajendra-lodh.jpg"},"members":[{"name":"Mr. Bimal Sinjali Magar","role":"Tablet Filling Machine Operator","photo":"images/staff/bimal-sinjali-magar.jpg"},{"name":"Mr. Resham Kumar Raut","role":"Capsule Filling Machine Operator","photo":"images/staff/resham-kumar-raut.jpg"}]}]},
+    {"name":"Quality Control","head":{"name":"QC","role":"Quality Control","photo":null},"members":[{"name":"Mr. Sandeep Kumar Chaudhary","role":"QC Executive Nutra","photo":"images/staff/sandeep-chaudhary.jpg"},{"name":"Ms. Aastha Shrivastav","role":"QC Officer Coffee","photo":"images/staff/aastha-shrivastav.jpg"}]},
+    {"name":"EMS","head":{"name":"EMS","role":"Environmental Management System","photo":null},"members":[]}
+  ]
+}
