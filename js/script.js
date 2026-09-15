@@ -114,6 +114,39 @@
       button.classList.toggle('is-active', isActive);
       button.setAttribute('aria-pressed', String(isActive));
     });
+
+    enableCardTilt();
+  };
+
+  const enableCardTilt = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(hover: hover)').matches) return;
+
+    productGrid.querySelectorAll('.product-card').forEach((card) => {
+      let frame = 0;
+      let pendingX = 0;
+      let pendingY = 0;
+
+      const reset = () => {
+        window.cancelAnimationFrame(frame);
+        card.style.transform = '';
+      };
+
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        pendingX = x;
+        pendingY = y;
+
+        if (frame) return;
+        frame = window.requestAnimationFrame(() => {
+          card.style.transform = `translate3d(0,-7px,0) perspective(900px) rotateX(${pendingY * -5}deg) rotateY(${pendingX * 5}deg)`;
+          frame = 0;
+        });
+      }, { passive: true });
+
+      card.addEventListener('pointerleave', reset, { passive: true });
+    });
   };
 
   const openModal = (product) => {
