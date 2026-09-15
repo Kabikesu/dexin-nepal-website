@@ -1,0 +1,29 @@
+.product-card { transform: translate3d(0,0,0); will-change: transform; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, opacity .22s ease; }
+.product-card:hover { transform: translate3d(0,-7px,0); box-shadow: 0 22px 50px rgba(0,0,0,.12); border-color: rgba(181,18,27,.3); }
+.product-card.is-filtering { opacity: 0; transform: translate3d(0,8px,0) scale(.97); }
+.product-card.is-entering { animation: product-card-in .34s ease both; animation-delay: calc(var(--i, 0) * 45ms); }
+.product-media { perspective: 900px; }
+.product-media img { transform: translate3d(0,0,0) scale(1); will-change: transform; transition: transform .35s ease, opacity .25s ease; }
+.product-card:hover .product-media img { transform: translate3d(0,-3px,0) scale(1.035); }
+.product-badge { position: absolute; top: 16px; left: 16px; z-index: 2; padding: 7px 11px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; color: #fff; background: rgba(23,23,23,.72); backdrop-filter: blur(10px); box-shadow: 0 8px 22px rgba(0,0,0,.12); font-size: .67rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.product-badge.upcoming { border-color: rgba(255,221,138,.4); color: #fff1c9; background: rgba(92,65,0,.68); }
+.product-badge.top { border-color: rgba(255,255,255,.5); background: rgba(181,18,27,.76); }
+.product-badge.nutra { border-color: rgba(255,255,255,.5); background: rgba(23,23,23,.74); }
+.product-modal { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 24px; }
+.product-modal[hidden] { display: none; }
+.product-modal-backdrop { position: absolute; inset: 0; background: rgba(10,10,10,.72); backdrop-filter: blur(12px); animation: modal-backdrop-in .22s ease both; }
+.product-modal-dialog { position: relative; z-index: 1; width: min(860px, 100%); display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 16px; background: #fff; box-shadow: 0 35px 100px rgba(0,0,0,.35); animation: modal-dialog-in .28s cubic-bezier(.2,.8,.2,1) both; }
+.modal-close { position: absolute; top: 14px; right: 14px; z-index: 2; width: 40px; height: 40px; border: 1px solid rgba(0,0,0,.12); border-radius: 50%; color: var(--dark); background: rgba(255,255,255,.88); font-size: 1.55rem; line-height: 1; cursor: pointer; }
+.modal-product-media { min-height: 390px; display: grid; place-items: center; padding: 40px; background: var(--surface-soft); }
+.modal-product-media img { max-height: 340px; object-fit: contain; }
+.modal-product-content { padding: 58px 48px 48px; }
+.modal-product-content h2 { margin: 0 0 16px; color: var(--dark); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; }
+.modal-product-content > p:last-child { margin: 0; color: var(--muted); font-size: 1rem; }
+.product-modal.is-closing .product-modal-dialog { animation: modal-dialog-out .18s ease both; }
+.product-modal.is-closing .product-modal-backdrop { animation: modal-backdrop-out .18s ease both; }
+@keyframes product-card-in { from { opacity: 0; transform: translate3d(0,12px,0) scale(.98); } to { opacity: 1; transform: translate3d(0,0,0) scale(1); } }
+@keyframes modal-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes modal-dialog-in { from { opacity: 0; transform: translate3d(0,18px,0) scale(.96); } to { opacity: 1; transform: translate3d(0,0,0) scale(1); } }
+@keyframes modal-dialog-out { from { opacity: 1; transform: translate3d(0,0,0) scale(1); } to { opacity: 0; transform: translate3d(0,12px,0) scale(.97); } }
+@media (prefers-reduced-motion: reduce) { .product-card, .product-media img { transition: none; } .product-card.is-entering, .product-modal-dialog, .product-modal-backdrop { animation: none; } }
