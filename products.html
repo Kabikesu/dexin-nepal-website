@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore current and upcoming products from Dexin Manufacturing Nepal Pvt. Ltd.">
+  <title>Products | Dexin Manufacturing Nepal Pvt. Ltd.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products-gallery.css">
+  <link rel="stylesheet" href="css/product-enhancements.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Dexin Manufacturing Nepal home">
+        <img src="images/logo/dxn-logo.png" alt="Dexin Manufacturing Nepal logo">
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="manufacturing.html">Manufacturing</a>
+        <a class="active" href="products.html" aria-current="page">Products</a>
+        <a href="quality.html">Quality</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="careers.html">Careers</a>
+        <a href="staff-portal.html">Staff Portal</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero products-hero">
+      <div class="container">
+        <p class="eyebrow">OUR PRODUCTS</p>
+        <h1>Products</h1>
+        <p>Explore current and planned product categories associated with Dexin Manufacturing Nepal's coffee and nutraceutical manufacturing operations.</p>
+      </div>
+    </section>
+
+    <section class="section products-catalogue" aria-labelledby="catalogue-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">PRODUCT CATALOGUE</p>
+          <h2 id="catalogue-title">A growing product portfolio</h2>
+          <p class="section-lead">Use the filters to explore the catalogue. Select a product for a focused overview.</p>
+        </div>
+
+        <div class="product-toolbar" role="toolbar" aria-label="Product filters">
+          <div class="product-filters" id="product-filters">
+            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="current" aria-pressed="false">Current</button>
+            <button class="filter-button" type="button" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+            <button class="filter-button" type="button" data-filter="nutraceuticals" aria-pressed="false">Nutraceuticals</button>
+            <button class="filter-button" type="button" data-filter="coffee" aria-pressed="false">Coffee</button>
+          </div>
+          <p class="product-count" id="product-count" aria-live="polite"></p>
+        </div>
+
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <p class="product-empty" id="product-empty" hidden>No products match this filter.</p>
+      </div>
+    </section>
+
+    <section class="section product-note">
+      <div class="container product-note-panel">
+        <div>
+          <p class="eyebrow">MANUFACTURING FOCUS</p>
+          <h2>Coffee and nutraceutical manufacturing in Nepal</h2>
+        </div>
+        <p>The product catalogue is designed as a data-driven system so product status, category, imagery and descriptions can be updated without rebuilding the page structure.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="product-modal" id="product-modal" hidden aria-hidden="true">
+    <div class="product-modal-backdrop" data-modal-close></div>
+    <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-product-name">
+      <button class="modal-close" type="button" aria-label="Close product details" data-modal-close>&times;</button>
+      <div class="modal-product-media" id="modal-product-media"></div>
+      <div class="modal-product-content">
+        <span class="product-status" id="modal-product-status"></span>
+        <p class="eyebrow" id="modal-product-category"></p>
+        <h2 id="modal-product-name"></h2>
+        <p id="modal-product-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span data-current-year></span> Dexin Manufacturing Nepal Pvt. Ltd. All rights reserved.</p>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <script src="js/product-images-placeholder.js" defer></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>
