@@ -59,6 +59,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .about-values { background: var(--surface); }
 .section-heading { max-width: 700px; margin-bottom: 42px; }
 .section-heading h2 { margin: 0; color: var(--dark); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.03em; }
+.section-lead { max-width: 680px; margin: 18px 0 0; color: var(--muted); font-size: 1.02rem; }
 .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .value-card { min-height: 220px; padding: 30px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
 .value-card:hover { transform: translateY(-4px); border-color: rgba(181,18,27,.35); box-shadow: var(--shadow); }
@@ -73,6 +74,37 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .text-link { color: var(--primary); font-weight: 700; }
 .text-link span { display: inline-block; margin-left: 7px; transition: transform .2s ease; }
 .text-link:hover span { transform: translateX(4px); }
+
+/* Manufacturing page */
+.manufacturing-hero { background: linear-gradient(110deg, rgba(23,23,23,.96), rgba(72,20,23,.88)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
+.manufacturing-overview { background: var(--surface); }
+.manufacturing-intro-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 72px; align-items: center; }
+.manufacturing-image-wrap { overflow: hidden; border-radius: var(--radius); background: var(--surface-soft); box-shadow: var(--shadow); }
+.manufacturing-image-wrap img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .5s ease; }
+.manufacturing-image-wrap:hover img { transform: scale(1.025); }
+.manufacturing-copy h2 { max-width: 620px; margin: 0 0 20px; color: var(--dark); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.03em; }
+.manufacturing-copy p:not(.eyebrow) { margin: 0 0 16px; color: var(--muted); font-size: 1.02rem; }
+.manufacturing-units { background: var(--surface-soft); }
+.unit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.unit-card { position: relative; min-height: 250px; display: flex; gap: 28px; padding: 34px; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.unit-card::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+.unit-card:hover { transform: translateY(-5px); border-color: rgba(181,18,27,.35); box-shadow: var(--shadow); }
+.unit-card:hover::after { transform: scaleX(1); }
+.unit-index { flex: 0 0 auto; color: var(--primary); font-size: .78rem; font-weight: 700; letter-spacing: .12em; }
+.unit-card-content h3 { margin: 0 0 12px; color: var(--dark); font-size: 1.5rem; }
+.unit-card-content p { margin: 0; color: var(--muted); }
+.manufacturing-approach { background: var(--surface); }
+.operations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.operation-card { min-height: 210px; padding: 28px; border-top: 3px solid var(--primary); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); border-left: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); background: #fff; transition: transform .25s ease, box-shadow .25s ease; }
+.operation-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.operation-card h3 { margin: 0 0 12px; color: var(--dark); font-size: 1.15rem; }
+.operation-card p { margin: 0; color: var(--muted); font-size: .95rem; }
+.manufacturing-standards { padding-top: 24px; background: var(--surface-soft); }
+.standards-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 70px; align-items: center; padding: 52px; border-radius: var(--radius); color: #fff; background: var(--dark); }
+.standards-panel h2 { max-width: 650px; margin: 0; color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.08; letter-spacing: -.03em; }
+.standards-panel .eyebrow { color: #f0a2a6; }
+.standards-panel > p { margin: 0; color: rgba(255,255,255,.72); font-size: 1.02rem; }
+
 .site-footer { padding: 28px 0; color: #bdbdbd; background: var(--dark); font-size: .85rem; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .footer-inner p { margin: 0; }
