@@ -27,12 +27,12 @@
 
   const photoMarkup = person => person.photo ? `<img src="${esc(person.photo)}" alt="${esc(person.name)}" loading="lazy">` : `<span class="staff-photo-placeholder" aria-hidden="true">${esc(initials(person.name))}</span>`;
 
-  const personCard = (person, isHead, extraClass='') => { const isFounder = person.name === 'Datuk Dr Lim Siow Jin'; const headLabel = isHead && !isFounder ? '<small>HEAD OF DEPARTMENT</small>' : (isFounder ? '<small>FOUNDER OF DXN</small>' : ''); return `<button type="button" class="team-member-card ${isHead?'team-member-head':''} ${extraClass}" data-person='${esc(JSON.stringify(person))}'><span class="team-member-photo">${photoMarkup(person)}<span class="team-member-open">View profile</span></span><span class="team-member-label">${headLabel}<strong>${esc(cleanName(person.name))}</strong><em>${esc(person.role)}</em></span></button>`; };
+  const personCard = (person, isHead, extraClass='') => { const isFounder = person.name === 'Datuk Dr Lim Siow Jin'; const headLabel = isHead && !isFounder ? '<small>HEAD OF DEPARTMENT</small><small class="reporting-label">REPORTING TO FPIC</small>' : (isFounder ? '<small>FOUNDER OF DXN</small>' : ''); return `<button type="button" class="team-member-card ${isHead?'team-member-head':''} ${extraClass}" data-person='${esc(JSON.stringify(person))}'><span class="team-member-photo">${photoMarkup(person)}<span class="team-member-open">View profile</span></span><span class="team-member-label">${headLabel}<strong>${esc(cleanName(person.name))}</strong><em>${esc(person.role)}</em></span></button>`; };
   const normalizeDepartment = d => ({name:d.name,head:d.head||null,members:d.members||[],groups:d.groups||[]});
 
   const leadershipPanel = data => {
     const [founder, rajesh, giri, rakesh, brijesh] = data.leadership || [];
-    return `<div class="executive-hierarchy">${founder ? `<div class="executive-level executive-founder-level">${personCard(founder,false,'executive-chairman-card')}</div>` : ''}<div class="executive-connector"></div><div class="executive-level executive-senior-level">${rajesh ? personCard(rajesh,false,'executive-senior-card') : ''}${giri ? personCard(giri,false,'executive-senior-card') : ''}</div><div class="executive-connector executive-connector-down"></div>${rakesh ? `<div class="executive-level executive-fpic-level">${personCard(rakesh,true,'executive-fpic-card')}</div>` : ''}${brijesh ? `<div class="executive-subordinate-line"></div><div class="executive-level executive-deputy-level">${personCard(brijesh,false,'executive-deputy-card')}</div>` : ''}</div>`;
+    return `<div class="executive-hierarchy">${founder ? `<div class="executive-level executive-founder-level">${personCard(founder,false,'executive-chairman-card')}</div>` : ''}<div class="executive-connector"></div><div class="executive-level executive-senior-level">${rajesh ? personCard(rajesh,false,'executive-senior-card') : ''}${giri ? personCard(giri,false,'executive-senior-card') : ''}</div><div class="executive-connector executive-connector-down"></div>${rakesh ? `<div class="executive-level executive-fpic-level">${personCard(rakesh,true,'executive-fpic-card')}</div>` : ''}${brijesh ? `<div class="executive-subordinate-line"></div><div class="executive-level executive-deputy-level"><div class="executive-under-label">REPORTING TO FPIC</div>${personCard(brijesh,false,'executive-deputy-card')}</div>` : ''}</div>`;
   };
 
   const build = data => {
@@ -43,21 +43,5 @@
     root.querySelectorAll('.team-member-card').forEach(button=>button.addEventListener('click',()=>{const person=JSON.parse(button.dataset.person);const email=person.email||'';const linkedin=person.linkedin||'';const isFounder=person.name==='Datuk Dr Lim Siow Jin';content.innerHTML=`<div class="profile-photo-large ${isFounder?'founder-profile-photo':''}">${photoMarkup(person)}</div><div class="profile-details ${isFounder?'founder-profile-details':''}">${button.classList.contains('team-member-head')&&!isFounder?'<span class="profile-badge">EXECUTIVE LEADERSHIP</span>':''}<span class="profile-eyebrow">DEXIN MANUFACTURING NEPAL</span><h3 id="profile-name">${esc(cleanName(person.name))}</h3><p class="profile-role">${esc(person.role)}</p><div class="profile-divider"></div><p class="profile-bio">${esc(bioFor(person))}</p><div class="profile-contact">${email?`<a href="mailto:${esc(email)}"><span>✉</span>${esc(email)}</a>`:'<span class="profile-unavailable">Professional email not published</span>'}${linkedin?`<a href="${esc(linkedin)}" target="_blank" rel="noopener noreferrer"><span>in</span>LinkedIn</a>`:''}</div></div>`;modal.hidden=false;document.body.classList.add('profile-modal-open');}));
     root.querySelectorAll('[data-profile-close]').forEach(el=>el.addEventListener('click',closeModal));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)closeModal();});
   };
-
-  const loadStaffData = async () => {
-    const dataUrl = new URL('./data/staff.json', document.baseURI);
-    dataUrl.searchParams.set('v', '20260915');
-    const response = await fetch(dataUrl.href, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Staff data request failed: ${response.status}`);
-    const data = await response.json();
-    if (!data || !Array.isArray(data.leadership) || !Array.isArray(data.departments)) {
-      throw new Error('Staff data format is invalid');
-    }
-    return data;
-  };
-
-  loadStaffData().then(build).catch(error => {
-    console.error('Our Team failed to load:', error);
-    root.innerHTML = '<div class="staff-empty"><strong>Our Team is temporarily unavailable.</strong><p>Please refresh the page once GitHub Pages finishes publishing the latest update.</p></div>';
-  });
+  fetch('data/staff.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('Staff data unavailable');return response.json();}).then(build).catch(()=>{root.innerHTML='<div class="staff-empty">Staff team data could not be loaded.</div>';});
 })();
