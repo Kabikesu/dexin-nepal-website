@@ -1,0 +1,397 @@
+{
+  "schemaVersion": "1.0",
+  "generated": true,
+  "folders": [
+    {
+      "id": "events-environment day",
+      "title": "Environment Day",
+      "category": "gallery",
+      "categoryLabel": "Corporate Events",
+      "path": "events/Environment Day",
+      "items": [
+        {
+          "src": "images/gallery/events/Environment Day/02.jpeg?v=c348dfb3127e",
+          "path": "gallery/events/Environment Day/02.jpeg",
+          "name": "02",
+          "type": "image",
+          "version": "c348dfb3127e"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/03.jpeg?v=756ecadaf372",
+          "path": "gallery/events/Environment Day/03.jpeg",
+          "name": "03",
+          "type": "image",
+          "version": "756ecadaf372"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/04.jpeg?v=3e8dacae9887",
+          "path": "gallery/events/Environment Day/04.jpeg",
+          "name": "04",
+          "type": "image",
+          "version": "3e8dacae9887"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/06.jpeg?v=74ee1de2d167",
+          "path": "gallery/events/Environment Day/06.jpeg",
+          "name": "06",
+          "type": "image",
+          "version": "74ee1de2d167"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/10.jpeg?v=78fb59b00256",
+          "path": "gallery/events/Environment Day/10.jpeg",
+          "name": "10",
+          "type": "image",
+          "version": "78fb59b00256"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/12.jpeg?v=9aa6b7e8f0e4",
+          "path": "gallery/events/Environment Day/12.jpeg",
+          "name": "12",
+          "type": "image",
+          "version": "9aa6b7e8f0e4"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/13.jpeg?v=4c5368e0ae47",
+          "path": "gallery/events/Environment Day/13.jpeg",
+          "name": "13",
+          "type": "image",
+          "version": "4c5368e0ae47"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/16.jpeg?v=76f924bd710d",
+          "path": "gallery/events/Environment Day/16.jpeg",
+          "name": "16",
+          "type": "image",
+          "version": "76f924bd710d"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/17.jpeg?v=ce6dcaf2b990",
+          "path": "gallery/events/Environment Day/17.jpeg",
+          "name": "17",
+          "type": "image",
+          "version": "ce6dcaf2b990"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/18.jpeg?v=dbf5ad2c6eb6",
+          "path": "gallery/events/Environment Day/18.jpeg",
+          "name": "18",
+          "type": "image",
+          "version": "dbf5ad2c6eb6"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/19.jpeg?v=f2d55a7240e6",
+          "path": "gallery/events/Environment Day/19.jpeg",
+          "name": "19",
+          "type": "image",
+          "version": "f2d55a7240e6"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/20.jpeg?v=b44de13e5b40",
+          "path": "gallery/events/Environment Day/20.jpeg",
+          "name": "20",
+          "type": "image",
+          "version": "b44de13e5b40"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/22.jpeg?v=585c5998e8eb",
+          "path": "gallery/events/Environment Day/22.jpeg",
+          "name": "22",
+          "type": "image",
+          "version": "585c5998e8eb"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/23.jpeg?v=1cbdaa724dd8",
+          "path": "gallery/events/Environment Day/23.jpeg",
+          "name": "23",
+          "type": "image",
+          "version": "1cbdaa724dd8"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/25.jpeg?v=d4a9ec4f6dc5",
+          "path": "gallery/events/Environment Day/25.jpeg",
+          "name": "25",
+          "type": "image",
+          "version": "d4a9ec4f6dc5"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/28.jpeg?v=2b424334149a",
+          "path": "gallery/events/Environment Day/28.jpeg",
+          "name": "28",
+          "type": "image",
+          "version": "2b424334149a"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/29.jpeg?v=54a7f85c120a",
+          "path": "gallery/events/Environment Day/29.jpeg",
+          "name": "29",
+          "type": "image",
+          "version": "54a7f85c120a"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/30.jpeg?v=69c21a1eb0b4",
+          "path": "gallery/events/Environment Day/30.jpeg",
+          "name": "30",
+          "type": "image",
+          "version": "69c21a1eb0b4"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/32.jpeg?v=c37836493883",
+          "path": "gallery/events/Environment Day/32.jpeg",
+          "name": "32",
+          "type": "image",
+          "version": "c37836493883"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/33.jpeg?v=d083aed24ff2",
+          "path": "gallery/events/Environment Day/33.jpeg",
+          "name": "33",
+          "type": "image",
+          "version": "d083aed24ff2"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/34.jpeg?v=cc383529f24d",
+          "path": "gallery/events/Environment Day/34.jpeg",
+          "name": "34",
+          "type": "image",
+          "version": "cc383529f24d"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/35.jpeg?v=564826f17abc",
+          "path": "gallery/events/Environment Day/35.jpeg",
+          "name": "35",
+          "type": "image",
+          "version": "564826f17abc"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/36.jpeg?v=6218c782f879",
+          "path": "gallery/events/Environment Day/36.jpeg",
+          "name": "36",
+          "type": "image",
+          "version": "6218c782f879"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/37.jpeg?v=177939e3ba4e",
+          "path": "gallery/events/Environment Day/37.jpeg",
+          "name": "37",
+          "type": "image",
+          "version": "177939e3ba4e"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/38.jpeg?v=1957ec3fe9ed",
+          "path": "gallery/events/Environment Day/38.jpeg",
+          "name": "38",
+          "type": "image",
+          "version": "1957ec3fe9ed"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/39.jpeg?v=f240bb3029b5",
+          "path": "gallery/events/Environment Day/39.jpeg",
+          "name": "39",
+          "type": "image",
+          "version": "f240bb3029b5"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/41.jpeg?v=02831f96b0a7",
+          "path": "gallery/events/Environment Day/41.jpeg",
+          "name": "41",
+          "type": "image",
+          "version": "02831f96b0a7"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/43.jpeg?v=852880846dab",
+          "path": "gallery/events/Environment Day/43.jpeg",
+          "name": "43",
+          "type": "image",
+          "version": "852880846dab"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/47.jpeg?v=dd4694ab8d0a",
+          "path": "gallery/events/Environment Day/47.jpeg",
+          "name": "47",
+          "type": "image",
+          "version": "dd4694ab8d0a"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/48.jpeg?v=54efca52955f",
+          "path": "gallery/events/Environment Day/48.jpeg",
+          "name": "48",
+          "type": "image",
+          "version": "54efca52955f"
+        },
+        {
+          "src": "images/gallery/events/Environment Day/49.jpeg?v=7555bcc53ddb",
+          "path": "gallery/events/Environment Day/49.jpeg",
+          "name": "49",
+          "type": "image",
+          "version": "7555bcc53ddb"
+        }
+      ]
+    },
+    {
+      "id": "events-inauguration day",
+      "title": "Inauguration Day",
+      "category": "gallery",
+      "categoryLabel": "Corporate Events",
+      "path": "events/Inauguration Day",
+      "items": [
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration 2.png?v=17de19ad34e2",
+          "path": "gallery/events/Inauguration Day/Inauguration 2.png",
+          "name": "Inauguration 2",
+          "type": "image",
+          "version": "17de19ad34e2"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration12.JPG?v=4125c5ddace9",
+          "path": "gallery/events/Inauguration Day/Inauguration12.JPG",
+          "name": "Inauguration12",
+          "type": "image",
+          "version": "4125c5ddace9"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration15.png?v=e6778ba8aa57",
+          "path": "gallery/events/Inauguration Day/Inauguration15.png",
+          "name": "Inauguration15",
+          "type": "image",
+          "version": "e6778ba8aa57"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration21.png?v=4852671dae45",
+          "path": "gallery/events/Inauguration Day/Inauguration21.png",
+          "name": "Inauguration21",
+          "type": "image",
+          "version": "4852671dae45"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration24.png?v=62f273689d12",
+          "path": "gallery/events/Inauguration Day/Inauguration24.png",
+          "name": "Inauguration24",
+          "type": "image",
+          "version": "62f273689d12"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration25.png?v=5c5cf4238fe0",
+          "path": "gallery/events/Inauguration Day/Inauguration25.png",
+          "name": "Inauguration25",
+          "type": "image",
+          "version": "5c5cf4238fe0"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration26.png?v=705e4793457b",
+          "path": "gallery/events/Inauguration Day/Inauguration26.png",
+          "name": "Inauguration26",
+          "type": "image",
+          "version": "705e4793457b"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration27.png?v=cc98f7ed4842",
+          "path": "gallery/events/Inauguration Day/Inauguration27.png",
+          "name": "Inauguration27",
+          "type": "image",
+          "version": "cc98f7ed4842"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration37.png?v=9e6e7156ecbf",
+          "path": "gallery/events/Inauguration Day/Inauguration37.png",
+          "name": "Inauguration37",
+          "type": "image",
+          "version": "9e6e7156ecbf"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration38.png?v=4fba9f11aa63",
+          "path": "gallery/events/Inauguration Day/Inauguration38.png",
+          "name": "Inauguration38",
+          "type": "image",
+          "version": "4fba9f11aa63"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration41.png?v=49caf7ab54b8",
+          "path": "gallery/events/Inauguration Day/Inauguration41.png",
+          "name": "Inauguration41",
+          "type": "image",
+          "version": "49caf7ab54b8"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration42.png?v=e544f2bb531b",
+          "path": "gallery/events/Inauguration Day/Inauguration42.png",
+          "name": "Inauguration42",
+          "type": "image",
+          "version": "e544f2bb531b"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration46.png?v=df8d9be403ab",
+          "path": "gallery/events/Inauguration Day/Inauguration46.png",
+          "name": "Inauguration46",
+          "type": "image",
+          "version": "df8d9be403ab"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration56.png?v=92af346251b4",
+          "path": "gallery/events/Inauguration Day/Inauguration56.png",
+          "name": "Inauguration56",
+          "type": "image",
+          "version": "92af346251b4"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration57.png?v=79472e457074",
+          "path": "gallery/events/Inauguration Day/Inauguration57.png",
+          "name": "Inauguration57",
+          "type": "image",
+          "version": "79472e457074"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration63.png?v=458bbe83a064",
+          "path": "gallery/events/Inauguration Day/Inauguration63.png",
+          "name": "Inauguration63",
+          "type": "image",
+          "version": "458bbe83a064"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration69.jpg?v=4d10690cf1f5",
+          "path": "gallery/events/Inauguration Day/Inauguration69.jpg",
+          "name": "Inauguration69",
+          "type": "image",
+          "version": "4d10690cf1f5"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration80.jpg?v=dddb8ee8e2f7",
+          "path": "gallery/events/Inauguration Day/Inauguration80.jpg",
+          "name": "Inauguration80",
+          "type": "image",
+          "version": "dddb8ee8e2f7"
+        },
+        {
+          "src": "images/gallery/events/Inauguration Day/Inauguration82.jpg?v=7313695ddf6a",
+          "path": "gallery/events/Inauguration Day/Inauguration82.jpg",
+          "name": "Inauguration82",
+          "type": "image",
+          "version": "7313695ddf6a"
+        }
+      ]
+    },
+    {
+      "id": "factory-images",
+      "title": "Factory Images",
+      "category": "factory",
+      "categoryLabel": "Factory Images",
+      "path": "",
+      "items": [
+        {
+          "src": "images/factory/factory-intro.jpg?v=17de19ad34e2",
+          "path": "factory/factory-intro.jpg",
+          "name": "Factory Intro",
+          "type": "image",
+          "version": "17de19ad34e2"
+        },
+        {
+          "src": "images/factory/founder.jpg?v=f130f4ac7055",
+          "path": "factory/founder.jpg",
+          "name": "Founder",
+          "type": "image",
+          "version": "f130f4ac7055"
+        }
+      ]
+    }
+  ]
+}
