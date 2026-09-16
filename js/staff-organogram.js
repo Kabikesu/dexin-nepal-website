@@ -1,47 +1,193 @@
-(function () {
+(() => {
   'use strict';
 
-  const root = document.querySelector('[data-staff-organogram]');
-  if (!root) return;
+  const departmentGrid = document.getElementById('department-grid');
+  const leadershipGrid = document.getElementById('leadership-grid');
+  const loadError = document.getElementById('staff-load-error');
+  const modal = document.getElementById('staff-modal');
+  if (!departmentGrid || !leadershipGrid || !modal) return;
 
-  const esc = v => String(v ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-  const initials = name => String(name || '').replace(/^Mr\.?\s|^Mrs\.?\s|^Ms\.?\s/, '').split(/\s+/).filter(Boolean).map(x => x[0]).slice(0,2).join('').toUpperCase();
-  const cleanName = name => String(name || '').replace(/^Mr\.?\s|^Mrs\.?\s|^Ms\.?\s/, '');
+  const state = { staff: null, lastFocused: null };
+  const initials = (name = '') => name.replace(/^(Mr\.?|Mrs\.?|Ms\.?|Dr\.?)\s+/i, '').split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'DX';
+  const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 
-  const bioFor = person => {
-    if (person.bio) return person.bio;
-    const role = String(person.role || '').toLowerCase();
-    if (role.includes('microbiolog')) return 'Supports microbiological quality activities and laboratory controls that help maintain product quality, hygiene, and compliance standards.';
-    if (role.includes('it')) return 'Supports IT infrastructure, systems, users, connectivity, cybersecurity, and day-to-day technology operations across the organization.';
-    if (role.includes('finance') || role.includes('account')) return 'Supports financial operations, accounting activities, reporting, controls, and timely coordination of finance requirements.';
-    if (role.includes('hr') || role.includes('human')) return 'Supports people operations, employee administration, HR coordination, and workplace services.';
-    if (role.includes('procurement') || role.includes('purchase')) return 'Supports sourcing, purchasing coordination, supplier communication, and procurement activities for operational requirements.';
-    if (role.includes('warehouse')) return 'Supports warehouse operations, inventory handling, material coordination, and organized movement of goods.';
-    if (role.includes('quality') || role.includes('qc')) return 'Supports quality control activities, inspection, documentation, and coordination of quality requirements.';
-    if (role.includes('engineering') || role.includes('technician') || role.includes('electrical')) return 'Supports engineering, equipment, electrical, maintenance, and technical activities required for reliable operations.';
-    if (role.includes('utility')) return 'Supports utility operations and technical services that help maintain reliable factory facilities and production support systems.';
-    if (role.includes('production') || role.includes('operator') || role.includes('packing') || role.includes('filling')) return 'Contributes to safe, efficient, and consistent production activities within the assigned manufacturing unit.';
-    if (role.includes('admin') || role.includes('driver') || role.includes('housekeeping') || role.includes('assistant')) return 'Supports administration and day-to-day workplace operations, helping maintain smooth and efficient factory activities.';
-    return 'Contributes to the successful operation of Dexin Manufacturing Nepal through responsibilities within the assigned role and department.';
+  const photoMarkup = (person, className = 'staff-photo') => {
+    const label = escapeHtml(person?.name || 'Staff member');
+    if (person?.photo) {
+      return `<div class="${className}"><img src="${escapeHtml(person.photo)}" alt="${label}" loading="lazy" data-photo-fallback="${escapeHtml(initials(person.name))}"></div>`;
+    }
+    return `<div class="${className}"><span class="${className.includes('member') ? 'member-placeholder' : 'head-placeholder'}" aria-label="Photo not available">${escapeHtml(initials(person?.name))}</span></div>`;
   };
 
-  const photoMarkup = person => person.photo ? `<img src="${esc(person.photo)}" alt="${esc(person.name)}" loading="lazy">` : `<span class="staff-photo-placeholder" aria-hidden="true">${esc(initials(person.name))}</span>`;
-
-  const personCard = (person, isHead, extraClass='') => { const isFounder = person.name === 'Datuk Dr Lim Siow Jin'; const headLabel = isHead && !isFounder ? '<small>HEAD OF DEPARTMENT</small><small class="reporting-label">REPORTING TO FPIC</small>' : (isFounder ? '<small>FOUNDER OF DXN</small>' : ''); return `<button type="button" class="team-member-card ${isHead?'team-member-head':''} ${extraClass}" data-person='${esc(JSON.stringify(person))}'><span class="team-member-photo">${photoMarkup(person)}<span class="team-member-open">View profile</span></span><span class="team-member-label">${headLabel}<strong>${esc(cleanName(person.name))}</strong><em>${esc(person.role)}</em></span></button>`; };
-  const normalizeDepartment = d => ({name:d.name,head:d.head||null,members:d.members||[],groups:d.groups||[]});
-
-  const leadershipPanel = data => {
-    const [founder, rajesh, giri, rakesh, brijesh] = data.leadership || [];
-    return `<div class="executive-hierarchy">${founder ? `<div class="executive-level executive-founder-level">${personCard(founder,false,'executive-chairman-card')}</div>` : ''}<div class="executive-connector"></div><div class="executive-level executive-senior-level">${rajesh ? personCard(rajesh,false,'executive-senior-card') : ''}${giri ? personCard(giri,false,'executive-senior-card') : ''}</div><div class="executive-connector executive-connector-down"></div>${rakesh ? `<div class="executive-level executive-fpic-level">${personCard(rakesh,true,'executive-fpic-card')}</div>` : ''}${brijesh ? `<div class="executive-subordinate-line"></div><div class="executive-level executive-deputy-level"><div class="executive-under-label">REPORTING TO FPIC</div>${personCard(brijesh,false,'executive-deputy-card')}</div>` : ''}</div>`;
+  const attachPhotoFallbacks = (root) => {
+    root.querySelectorAll('img[data-photo-fallback]').forEach((image) => {
+      image.addEventListener('error', () => {
+        const box = image.parentElement;
+        if (!box || box.dataset.fallbackApplied) return;
+        box.dataset.fallbackApplied = 'true';
+        const placeholder = document.createElement('span');
+        placeholder.className = 'head-placeholder';
+        placeholder.textContent = image.dataset.photoFallback || 'DX';
+        placeholder.setAttribute('aria-label', 'Photo not available');
+        image.replaceWith(placeholder);
+      }, { once: true });
+    });
   };
 
-  const build = data => {
-    const departments = [{name:'Executive Leadership', leadership:true, count:(data.leadership||[]).length}, ...(data.departments||[]).map(normalizeDepartment)];
-    root.innerHTML = `<div class="team-intro"><p>Explore the leadership structure and departments of Dexin Manufacturing Nepal. <strong>All Department Heads report directly to Mr. Rakesh Kumar Karn, Factory PIC (FPIC).</strong> Click a department or leadership level to discover individual profiles.</p></div><div class="team-department-grid">${departments.map(d=>{if(d.leadership)return `<section class="team-department leadership-department" data-department><button type="button" class="department-toggle" aria-expanded="false"><span class="department-icon">L</span><span class="department-copy"><strong>Executive Leadership</strong><small>${d.count} leadership positions</small></span><span class="department-chevron" aria-hidden="true">+</span></button><div class="department-panel" hidden>${leadershipPanel(data)}</div></section>`;const count=d.groups.length?d.groups.reduce((n,g)=>n+1+(g.members||[]).length,0):(d.head?1:0)+d.members.length;return `<section class="team-department" data-department><button type="button" class="department-toggle" aria-expanded="false"><span class="department-icon">${esc(d.name.charAt(0))}</span><span class="department-copy"><strong>${esc(d.name)}</strong><small>${count} team member${count===1?'':'s'}</small></span><span class="department-chevron" aria-hidden="true">+</span></button><div class="department-panel" hidden>${d.groups.length?`<div class="team-unit-grid">${d.groups.map(g=>`<div class="team-unit"><div class="team-unit-title"><h3>${esc(g.name)}</h3><span>${1+(g.members||[]).length} members</span></div>${g.head?personCard(g.head,true):''}<div class="team-member-grid">${(g.members||[]).map(p=>personCard(p,false)).join('')}</div></div>`).join('')}</div>`:`<div class="team-member-grid department-members">${d.head?personCard(d.head,true):''}${d.members.map(p=>personCard(p,false)).join('')}</div>`}</div></section>`;}).join('')}</div><div class="team-profile-modal" data-profile-modal hidden><div class="team-profile-backdrop" data-profile-close></div><div class="team-profile-dialog" role="dialog" aria-modal="true" aria-labelledby="profile-name"><button type="button" class="team-profile-close" data-profile-close aria-label="Close profile">&times;</button><div class="team-profile-content" data-profile-content></div></div></div>`;
-    root.querySelectorAll('.department-toggle').forEach(toggle=>toggle.addEventListener('click',()=>{const section=toggle.closest('[data-department]');const panel=section.querySelector('.department-panel');const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));panel.hidden=open;section.classList.toggle('is-open',!open);toggle.querySelector('.department-chevron').textContent=open?'+':'−';}));
-    const modal=root.querySelector('[data-profile-modal]');const content=root.querySelector('[data-profile-content']);const closeModal=()=>{modal.hidden=true;document.body.classList.remove('profile-modal-open');};
-    root.querySelectorAll('.team-member-card').forEach(button=>button.addEventListener('click',()=>{const person=JSON.parse(button.dataset.person);const email=person.email||'';const linkedin=person.linkedin||'';const isFounder=person.name==='Datuk Dr Lim Siow Jin';content.innerHTML=`<div class="profile-photo-large ${isFounder?'founder-profile-photo':''}">${photoMarkup(person)}</div><div class="profile-details ${isFounder?'founder-profile-details':''}">${button.classList.contains('team-member-head')&&!isFounder?'<span class="profile-badge">EXECUTIVE LEADERSHIP</span>':''}<span class="profile-eyebrow">DEXIN MANUFACTURING NEPAL</span><h3 id="profile-name">${esc(cleanName(person.name))}</h3><p class="profile-role">${esc(person.role)}</p><div class="profile-divider"></div><p class="profile-bio">${esc(bioFor(person))}</p><div class="profile-contact">${email?`<a href="mailto:${esc(email)}"><span>✉</span>${esc(email)}</a>`:'<span class="profile-unavailable">Professional email not published</span>'}${linkedin?`<a href="${esc(linkedin)}" target="_blank" rel="noopener noreferrer"><span>in</span>LinkedIn</a>`:''}</div></div>`;modal.hidden=false;document.body.classList.add('profile-modal-open');}));
-    root.querySelectorAll('[data-profile-close]').forEach(el=>el.addEventListener('click',closeModal));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)closeModal();});
+  const allMembers = (department) => {
+    const direct = Array.isArray(department.members) ? department.members : [];
+    const groups = Array.isArray(department.groups) ? department.groups : [];
+    return direct.concat(groups.flatMap((group) => Array.isArray(group.members) ? group.members : []));
   };
-  fetch('data/staff.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('Staff data unavailable');return response.json();}).then(build).catch(()=>{root.innerHTML='<div class="staff-empty">Staff team data could not be loaded.</div>';});
+
+  const findPerson = (id) => {
+    for (const person of state.staff.leadership || []) if (person.id === id) return person;
+    for (const department of state.staff.departments || []) {
+      if (department.headId === id) return department.members?.find((person) => person.id === id) || null;
+      for (const person of department.members || []) if (person.id === id) return person;
+      for (const group of department.groups || []) {
+        if (group.headId === id) return group.members?.find((person) => person.id === id) || null;
+        for (const person of group.members || []) if (person.id === id) return person;
+      }
+    }
+    return null;
+  };
+
+  const headFor = (department) => department.headId ? findPerson(department.headId) : null;
+
+  const memberCard = (person, departmentName) => `
+    <button class="member-card" type="button" data-person-id="${escapeHtml(person.id)}" data-department="${escapeHtml(departmentName)}">
+      ${photoMarkup(person, 'member-photo')}
+      <span class="member-body">
+        <strong>${escapeHtml(person.name)}</strong>
+        <span>${escapeHtml(person.role)}</span>
+      </span>
+    </button>`;
+
+  const departmentMembers = (department) => {
+    if (department.groups?.length) {
+      return department.groups.map((group) => {
+        const groupHead = group.headId ? group.members?.find((person) => person.id === group.headId) : null;
+        const members = (group.members || []).filter((person) => person.id !== group.headId);
+        return `<div class="unit-block">
+          <div class="unit-title"><h4>${escapeHtml(group.name)}</h4><span>${members.length + (groupHead ? 1 : 0)} members</span></div>
+          ${groupHead ? `<div class="unit-head">${memberCard(groupHead, `${department.name} / ${group.name}`)}</div>` : ''}
+          <div class="member-grid">${members.map((person) => memberCard(person, `${department.name} / ${group.name}`)).join('')}</div>
+        </div>`;
+      }).join('');
+    }
+    const members = (department.members || []).filter((person) => person.id !== department.headId);
+    return members.length ? `<div class="member-grid">${members.map((person) => memberCard(person, department.name)).join('')}</div>` : '<p class="staff-state">No additional team members listed.</p>';
+  };
+
+  const renderLeadership = () => {
+    leadershipGrid.innerHTML = (state.staff.leadership || []).map((person) => `
+      <article class="leadership-card" tabindex="0" data-person-id="${escapeHtml(person.id)}">
+        ${person.label ? `<span class="staff-label">${escapeHtml(person.label)}</span>` : ''}
+        ${photoMarkup(person)}
+        <h3>${escapeHtml(person.name)}</h3>
+        <p class="staff-role">${escapeHtml(person.role)}</p>
+      </article>
+    `).join('');
+    attachPhotoFallbacks(leadershipGrid);
+  };
+
+  const renderDepartments = () => {
+    departmentGrid.innerHTML = (state.staff.departments || []).map((department, index) => {
+      const head = headFor(department);
+      const count = allMembers(department).length;
+      const headMarkup = head ? `
+        <div class="department-head">
+          ${photoMarkup(head)}
+          <div><span class="department-head-label">Department Head</span><h3>${escapeHtml(head.name)}</h3><p class="staff-role">${escapeHtml(head.role)}</p></div>
+        </div>` : `
+        <div class="department-head vacant-head">
+          <div class="staff-photo"><span class="head-placeholder">—</span></div>
+          <div><span class="department-head-label">Department Head</span><h3>Position Vacant / Not Specified</h3><p class="staff-role">Update the staff data when the position is assigned.</p></div>
+        </div>`;
+      return `<article class="department-card" data-department-id="${escapeHtml(department.id)}">
+        <button class="department-trigger" type="button" aria-expanded="false" aria-controls="department-content-${escapeHtml(department.id)}">
+          <span class="department-top"><span><span class="department-index">${String(index + 1).padStart(2, '0')}</span><span class="department-index"> · ${count} people</span><h3>${escapeHtml(department.name)}</h3><p>${escapeHtml(department.description || '')}</p></span><span class="department-arrow" aria-hidden="true">⌄</span></span>
+          ${headMarkup}
+        </button>
+        <div class="department-content" id="department-content-${escapeHtml(department.id)}"><div class="department-content-inner">${departmentMembers(department)}</div></div>
+      </article>`;
+    }).join('');
+    attachPhotoFallbacks(departmentGrid);
+  };
+
+  const openProfile = (person, departmentName = 'TEAM MEMBER') => {
+    if (!person) return;
+    state.lastFocused = document.activeElement;
+    document.getElementById('staff-modal-department').textContent = departmentName;
+    document.getElementById('staff-modal-name').textContent = person.name || 'Staff member';
+    document.getElementById('staff-modal-role').textContent = person.role || '';
+    document.getElementById('staff-modal-bio').textContent = person.bio || 'Professional profile information will be added to the staff data when approved.';
+    const photo = document.getElementById('staff-modal-photo');
+    photo.innerHTML = photoMarkup(person, 'staff-modal-photo');
+    const email = document.getElementById('staff-modal-email');
+    if (person.email) { email.href = `mailto:${person.email}`; email.hidden = false; } else { email.hidden = true; }
+    attachPhotoFallbacks(photo);
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    window.requestAnimationFrame(() => modal.querySelector('.staff-modal-close')?.focus());
+  };
+
+  const closeProfile = () => {
+    if (modal.hidden) return;
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    state.lastFocused?.focus?.();
+  };
+
+  const bindInteractions = () => {
+    departmentGrid.addEventListener('click', (event) => {
+      const member = event.target.closest('[data-person-id]');
+      if (member && member.classList.contains('member-card')) {
+        openProfile(findPerson(member.dataset.personId), member.dataset.department || 'TEAM MEMBER');
+        return;
+      }
+      const trigger = event.target.closest('.department-trigger');
+      if (!trigger) return;
+      const card = trigger.closest('.department-card');
+      const open = card.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', String(open));
+    });
+
+    leadershipGrid.addEventListener('click', (event) => {
+      const card = event.target.closest('[data-person-id]');
+      if (card) openProfile(findPerson(card.dataset.personId), 'LEADERSHIP');
+    });
+
+    leadershipGrid.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const card = event.target.closest('[data-person-id]');
+      if (!card) return;
+      event.preventDefault();
+      openProfile(findPerson(card.dataset.personId), 'LEADERSHIP');
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target.closest('[data-modal-close]')) closeProfile();
+    });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeProfile(); });
+  };
+
+  const load = async () => {
+    try {
+      const response = await fetch('data/staff.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      state.staff = await response.json();
+      renderLeadership();
+      renderDepartments();
+      bindInteractions();
+    } catch (error) {
+      console.error('Staff data load failed:', error);
+      loadError.hidden = false;
+    }
+  };
+
+  load();
 })();
