@@ -47,15 +47,15 @@
   });
 
   const products = [
-    { id: 'gl90', name: 'Ganocelium (GL-90) Capsule', status: 'current', category: 'nutraceuticals', description: 'A DXN nutraceutical product listed for the Nepal manufacturing portfolio.', image: 'images/products/nutraceuticals/gl-90.jpg' },
-    { id: 'rg90', name: 'Reishi Gano (RG-90) Capsule', status: 'current', category: 'nutraceuticals', description: 'A DXN nutraceutical product listed for the Nepal manufacturing portfolio.', image: 'images/products/nutraceuticals/rg-90.jpg' },
-    { id: 'spirulina-powder', name: 'Spirulina Powder - 50 gm', status: 'current', category: 'nutraceuticals', description: 'DXN Spirulina powder in the planned nutraceutical product range.', image: 'images/products/nutraceuticals/spirulina-powder-50g.jpg' },
+    { id: 'gl90', name: 'Ganocelium (GL-90) Capsule', status: 'current', category: 'nutraceuticals', description: 'A DXN nutraceutical product listed for the Nepal manufacturing portfolio.', image: 'images/products/nutraceuticals/Ganocelium GL-90.jpg' },
+    { id: 'rg90', name: 'Reishi Gano (RG-90) Capsule', status: 'current', category: 'nutraceuticals', description: 'A DXN nutraceutical product listed for the Nepal manufacturing portfolio.', image: 'images/products/nutraceuticals/Reishi Gano RG-90.jpg' },
+    { id: 'spirulina-powder', name: 'Spirulina Powder - 50 gm', status: 'current', category: 'nutraceuticals', description: 'DXN Spirulina powder in the planned nutraceutical product range.', image: 'images/products/nutraceuticals/Spirulina Powder 50g.jpg' },
     { id: 'spirulina-tablet-120', name: "Spirulina Tablets 120's", status: 'current', category: 'nutraceuticals', description: 'DXN Spirulina tablet product in the Nepal portfolio.', image: 'images/products/nutraceuticals/spirulina-tablet-120.jpg' },
     { id: 'spirulina-tablet-360', name: "Spirulina Tablets 360's", status: 'current', category: 'nutraceuticals', description: 'DXN Spirulina tablet product in the Nepal portfolio.', image: 'images/products/nutraceuticals/spirulina-tablet-360.jpg' },
     { id: 'spirulina-capsule-120', name: "Spirulina Capsule 120's", status: 'current', category: 'nutraceuticals', description: 'DXN Spirulina capsule product in the Nepal portfolio.', image: 'images/products/nutraceuticals/spirulina-capsule-120.jpg' },
     { id: 'spirulina-capsule-360', name: "Spirulina Capsule 360's", status: 'current', category: 'nutraceuticals', description: 'DXN Spirulina capsule product in the Nepal portfolio.', image: 'images/products/nutraceuticals/spirulina-capsule-360.jpg' },
-    { id: 'cocozhi', name: 'Cocozhi', status: 'current', category: 'coffee', description: 'A DXN beverage product included in the coffee-unit portfolio.', image: 'images/products/coffee/cocozhi.jpg' },
-    { id: 'lingzhi-3in1', name: 'Lingzhi Coffee 3 in 1', status: 'current', category: 'coffee', description: 'DXN coffee product for the coffee manufacturing portfolio.', image: 'images/products/coffee/lingzhi-3in1.jpg' },
+    { id: 'cocozhi', name: 'Cocozhi', status: 'current', category: 'coffee', description: 'A DXN beverage product included in the coffee-unit portfolio.', image: 'images/products/coffee/Cocozhi.jpg' },
+    { id: 'lingzhi-3in1', name: 'Lingzhi Coffee 3 in 1', status: 'current', category: 'coffee', description: 'DXN coffee product for the coffee manufacturing portfolio.', image: 'images/products/coffee/Lingzhi Coffee 3 in 1.jpg' },
     { id: 'cordyceps-coffee', name: 'Cordyceps Coffee 3 in 1', status: 'current', category: 'coffee', description: 'DXN coffee product included in the coffee-unit portfolio.', image: 'images/products/coffee/Cordyceys coffe.jpeg' },
     { id: 'rg360', name: 'Reishi Gano (RG-360) Capsule', status: 'upcoming', category: 'nutraceuticals', description: 'An upcoming nutraceutical product in the Nepal manufacturing plan.', image: 'images/products/nutraceuticals/rg-360.jpg' },
     { id: 'gl360', name: 'Ganocelium (GL-360) Capsule', status: 'upcoming', category: 'nutraceuticals', description: 'An upcoming nutraceutical product in the Nepal manufacturing plan.', image: 'images/products/nutraceuticals/gl-360.jpg' },
