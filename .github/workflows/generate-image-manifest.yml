@@ -1,0 +1,42 @@
+name: Update Gallery Media Manifest
+
+on:
+  push:
+    branches:
+      - rebuild/clean-architecture
+      - main
+    paths-ignore:
+      - 'images.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Generate gallery manifest
+        run: python tools/generate-image-manifest.py
+
+      - name: Commit manifest when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images.json
+          if git diff --cached --quiet; then
+            echo "Gallery manifest is already current."
+          else
+            git commit -m "chore: update gallery media manifest [skip ci]"
+            git push
+          fi
