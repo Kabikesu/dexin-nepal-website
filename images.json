@@ -390,6 +390,13 @@
           "name": "Img 1991",
           "type": "image",
           "version": "7eb70257593d"
+        },
+        {
+          "src": "images/gallery/images/IMG_2003.JPG?v=7eb70257593d",
+          "path": "gallery/images/IMG_2003.JPG",
+          "name": "Img 2003",
+          "type": "image",
+          "version": "7eb70257593d"
         }
       ]
     },
