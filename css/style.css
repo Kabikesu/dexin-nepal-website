@@ -50,6 +50,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button-outline { color: #fff; border: 1px solid rgba(255,255,255,.65); }
 .button-outline:hover { border-color: #fff; background: rgba(255,255,255,.1); }
 .page-hero { padding: 112px 0 100px; color: #fff; background: linear-gradient(110deg, rgba(23,23,23,.98), rgba(72,20,23,.92)); }
+.page-hero-about { background: linear-gradient(110deg, rgba(23,23,23,.72), rgba(72,20,23,.48)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
 .page-hero h1 { margin: 0; font-size: clamp(2.7rem, 6vw, 4.8rem); line-height: 1.05; letter-spacing: -.04em; }
 .page-hero p:last-child { max-width: 680px; margin: 20px 0 0; color: rgba(255,255,255,.78); font-size: 1.05rem; }
 .about-introduction { background: var(--surface); }
