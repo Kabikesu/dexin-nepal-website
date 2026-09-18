@@ -49,8 +49,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button-primary:hover { background: var(--primary-light); }
 .button-outline { color: #fff; border: 1px solid rgba(255,255,255,.65); }
 .button-outline:hover { border-color: #fff; background: rgba(255,255,255,.1); }
-.page-hero { padding: 112px 0 100px; color: #fff; background: linear-gradient(110deg, rgba(23,23,23,.72), rgba(72,20,23,.48)), url("../images/hero/factory-main.png") center/cover no-repeat; }
-.page-hero-about { background: linear-gradient(110deg, rgba(23,23,23,.72), rgba(72,20,23,.48)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
+.page-hero { padding: 112px 0 100px; color: #fff; background: linear-gradient(110deg, rgba(23,23,23,.58), rgba(72,20,23,.38)), url("../images/hero/factory-main.png") center/cover no-repeat; }
+.page-hero-about { background: linear-gradient(110deg, rgba(23,23,23,.58), rgba(72,20,23,.38)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
 .page-hero h1 { margin: 0; font-size: clamp(2.7rem, 6vw, 4.8rem); line-height: 1.05; letter-spacing: -.04em; }
 .page-hero p:last-child { max-width: 680px; margin: 20px 0 0; color: rgba(255,255,255,.78); font-size: 1.05rem; }
 .about-introduction { background: var(--surface); }
@@ -84,7 +84,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .text-link span { display: inline-block; margin-left: 7px; transition: transform .2s ease; }
 .text-link:hover span { transform: translateX(4px); }
 
-.manufacturing-hero { background: linear-gradient(110deg, rgba(23,23,23,.96), rgba(72,20,23,.88)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
+.manufacturing-hero { background: linear-gradient(110deg, rgba(23,23,23,.58), rgba(72,20,23,.38)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
 .manufacturing-overview { background: var(--surface); }
 .manufacturing-intro-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 72px; align-items: center; }
 .manufacturing-image-wrap { overflow: hidden; border-radius: var(--radius); background: var(--surface-soft); box-shadow: var(--shadow); }
@@ -113,7 +113,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .standards-panel .eyebrow { color: #f0a2a6; }
 .standards-panel > p { margin: 0; color: rgba(255,255,255,.72); font-size: 1.02rem; }
 
-.quality-hero { background: linear-gradient(110deg, rgba(23,23,23,.72), rgba(72,20,23,.48)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
+.quality-hero { background: linear-gradient(110deg, rgba(23,23,23,.58), rgba(72,20,23,.38)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
 .quality-commitment { background: var(--surface); }
 .quality-intro-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 72px; align-items: center; }
 .quality-copy h2 { max-width: 620px; margin: 0 0 20px; color: var(--dark); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.03em; }
