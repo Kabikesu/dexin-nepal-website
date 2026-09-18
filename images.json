@@ -371,6 +371,22 @@
       ]
     },
     {
+      "id": "images",
+      "title": "Images",
+      "category": "gallery",
+      "categoryLabel": "Corporate Images",
+      "path": "images",
+      "items": [
+        {
+          "src": "images/gallery/images/IMG_1968.JPG?v=7eb70257593d",
+          "path": "gallery/images/IMG_1968.JPG",
+          "name": "Img 1968",
+          "type": "image",
+          "version": "7eb70257593d"
+        }
+      ]
+    },
+    {
       "id": "factory-images",
       "title": "Factory Images",
       "category": "factory",
