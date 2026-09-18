@@ -79,8 +79,8 @@
 
   const openAlbum = (album) => {
     state.activeAlbum = album;
-    renderMedia();
-    window.requestAnimationFrame(() => document.querySelector('.gallery-toolbar')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    state.activeIndex = 0;
+    openLightbox(0);
   };
 
   const closeAlbum = () => { state.activeAlbum = null; renderAlbums(); };
