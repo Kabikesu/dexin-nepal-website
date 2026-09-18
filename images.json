@@ -371,6 +371,36 @@
       ]
     },
     {
+      "id": "images",
+      "title": "Images",
+      "category": "gallery",
+      "categoryLabel": "Corporate Images",
+      "path": "images",
+      "items": [
+        {
+          "src": "images/gallery/images/IMG_1975.JPG?v=9865455b2576",
+          "path": "gallery/images/IMG_1975.JPG",
+          "name": "Img 1975",
+          "type": "image",
+          "version": "9865455b2576"
+        },
+        {
+          "src": "images/gallery/images/IMG_2008.JPG?v=7d9f6b5a29c2",
+          "path": "gallery/images/IMG_2008.JPG",
+          "name": "Img 2008",
+          "type": "image",
+          "version": "7d9f6b5a29c2"
+        },
+        {
+          "src": "images/gallery/images/IMG_2022.JPG?v=adf01899de71",
+          "path": "gallery/images/IMG_2022.JPG",
+          "name": "Img 2022",
+          "type": "image",
+          "version": "adf01899de71"
+        }
+      ]
+    },
+    {
       "id": "factory-images",
       "title": "Factory Images",
       "category": "factory",
