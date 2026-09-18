@@ -24,7 +24,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .eyebrow { margin: 0 0 12px; color: var(--primary); font-size: .78rem; font-weight: 700; letter-spacing: .16em; }
 .site-header { position: sticky; top: 0; z-index: 1000; min-height: var(--header-height); background: rgba(255,255,255,.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); }
 .header-inner { min-height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.brand img { width: 150px; height: auto; }
+
+/* =========================================================
+   BRAND VISIBILITY
+========================================================= */
+.brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+.brand img { width: 185px; height: auto; }
+
 .site-nav { display: flex; align-items: center; gap: 22px; }
 .site-nav a { position: relative; padding: 28px 0; color: #292929; font-size: .88rem; font-weight: 600; white-space: nowrap; }
 .site-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 20px; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: center; transition: transform .2s ease; }
@@ -75,7 +81,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .text-link span { display: inline-block; margin-left: 7px; transition: transform .2s ease; }
 .text-link:hover span { transform: translateX(4px); }
 
-/* Manufacturing page */
 .manufacturing-hero { background: linear-gradient(110deg, rgba(23,23,23,.96), rgba(72,20,23,.88)), url("../images/factory/factory-intro.jpg") center/cover no-repeat; }
 .manufacturing-overview { background: var(--surface); }
 .manufacturing-intro-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 72px; align-items: center; }
@@ -105,7 +110,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .standards-panel .eyebrow { color: #f0a2a6; }
 .standards-panel > p { margin: 0; color: rgba(255,255,255,.72); font-size: 1.02rem; }
 
-/* Quality page */
 .quality-hero { background: linear-gradient(110deg, rgba(23,23,23,.98), rgba(72,20,23,.92)); }
 .quality-commitment { background: var(--surface); }
 .quality-intro-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 72px; align-items: center; }
