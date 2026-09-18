@@ -29,7 +29,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
    BRAND VISIBILITY
 ========================================================= */
 .brand { display: inline-flex; align-items: center; flex-shrink: 0; }
-.brand img { width: 100px; height: 90px; }
+.brand img { width: 180px; height: 90px; }
 
 .site-nav { display: flex; align-items: center; gap: 22px; }
 .site-nav a { position: relative; padding: 28px 0; color: #292929; font-size: .88rem; font-weight: 600; white-space: nowrap; }
