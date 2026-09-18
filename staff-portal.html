@@ -3,30 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Staff Portal links for Dexin Manufacturing Nepal Pvt. Ltd.">
+  <meta name="description" content="Staff Portal and team structure of Dexin Manufacturing Nepal Pvt. Ltd.">
   <title>Staff Portal | Dexin Manufacturing Nepal Pvt. Ltd.</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/staff-organogram.css">
 </head>
 <body>
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Dexin Manufacturing Nepal home">
-        <img src="images/logo/dxn-logo.png" alt="Dexin Manufacturing Nepal logo">
-      </a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
-        <span></span><span></span><span></span>
-      </button>
+      <a class="brand" href="index.html" aria-label="Dexin Manufacturing Nepal home"><img src="images/logo/dxn-logo.png" alt="Dexin Manufacturing Nepal logo"></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
       <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="manufacturing.html">Manufacturing</a>
-        <a href="products.html">Products</a>
-        <a href="quality.html">Quality</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="careers.html">Careers</a>
-        <a class="active" href="staff-portal.html" aria-current="page">Staff Portal</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="manufacturing.html">Manufacturing</a><a href="products.html">Products</a><a href="quality.html">Quality</a><a href="gallery.html">Gallery</a><a href="careers.html">Careers</a><a class="active" href="staff-portal.html" aria-current="page">Staff Portal</a><a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -35,48 +24,31 @@
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow">STAFF PORTAL</p>
-        <h1>Staff Portal</h1>
-        <p>Quick access to external workplace systems used by Dexin Manufacturing Nepal staff.</p>
+        <h1>Our Team</h1>
+        <p>Meet the leadership and teams supporting Dexin Manufacturing Nepal Pvt. Ltd.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">LEADERSHIP</p>
+          <h2>Leadership Team</h2>
+          <p class="section-lead">Our leadership structure and key factory representatives.</p>
+        </div>
+        <div class="staff-leadership-grid" id="leadership-grid" aria-live="polite"></div>
       </div>
     </section>
 
     <section class="section about-values">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">STAFF ACCESS</p>
-          <h2>Workplace systems in one place.</h2>
-          <p class="section-lead">Select the relevant system below. Each service opens its own external website in a new browser tab.</p>
+          <p class="eyebrow">DEPARTMENTS</p>
+          <h2>Our Teams</h2>
+          <p class="section-lead">Explore each department to view the team members and their roles.</p>
         </div>
-
-        <div class="value-grid">
-          <article class="value-card">
-            <span class="value-number">01 / POV</span>
-            <h3>POV</h3>
-            <p>Access the external POV workplace system.</p>
-            <p style="margin-top:24px;"><a class="button button-primary" href="https://pov.dxn2u.com/web/login" target="_blank" rel="noopener noreferrer">Open POV <span aria-hidden="true">↗</span></a></p>
-          </article>
-
-          <article class="value-card">
-            <span class="value-number">02 / HRMS</span>
-            <h3>HRMS</h3>
-            <p>Access the external Human Resource Management System.</p>
-            <p style="margin-top:24px;"><a class="button button-primary" href="https://hrms.dxn2u.com/" target="_blank" rel="noopener noreferrer">Open HRMS <span aria-hidden="true">↗</span></a></p>
-          </article>
-
-          <article class="value-card">
-            <span class="value-number">03 / RCS</span>
-            <h3>RCS</h3>
-            <p>Access the external RCS workplace system.</p>
-            <p style="margin-top:24px;"><a class="button button-primary" href="https://rcs.dxn2u.com/site/login" target="_blank" rel="noopener noreferrer">Open RCS <span aria-hidden="true">↗</span></a></p>
-          </article>
-
-          <article class="value-card">
-            <span class="value-number">04 / ERP</span>
-            <h3>Nimble ERP</h3>
-            <p>Access the external Nimble ERP platform used for business operations.</p>
-            <p style="margin-top:24px;"><a class="button button-primary" href="https://dexin.nimbleerp.com/" target="_blank" rel="noopener noreferrer">Open ERP <span aria-hidden="true">↗</span></a></p>
-          </article>
-        </div>
+        <div class="department-grid" id="department-grid" aria-live="polite"></div>
+        <p id="staff-load-error" class="staff-state" hidden>Staff information is temporarily unavailable.</p>
       </div>
     </section>
 
@@ -84,15 +56,38 @@
       <div class="container intro-grid">
         <div>
           <p class="eyebrow">EXTERNAL SYSTEMS</p>
-          <h2>One portal, separate services.</h2>
+          <h2>Workplace systems in one place.</h2>
         </div>
         <div>
-          <p>This Staff Portal provides convenient links only. It does not store staff credentials or integrate the external systems into the Dexin website.</p>
-          <p>Use your authorized account credentials on the respective external platform.</p>
+          <p>Select the relevant system below. Each service opens its own external website in a new browser tab.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://pov.dxn2u.com/web/login" target="_blank" rel="noopener noreferrer">Open POV ↗</a>
+            <a class="button button-primary" href="https://hrms.dxn2u.com/" target="_blank" rel="noopener noreferrer">Open HRMS ↗</a>
+            <a class="button button-primary" href="https://rcs.dxn2u.com/site/login" target="_blank" rel="noopener noreferrer">Open RCS ↗</a>
+            <a class="button button-primary" href="https://dexin.nimbleerp.com/" target="_blank" rel="noopener noreferrer">Open ERP ↗</a>
+          </div>
+          <p style="margin-top:24px;">This portal provides convenient links only. It does not store staff credentials or integrate the external systems into the Dexin website.</p>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="staff-modal" id="staff-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Staff profile">
+    <div class="staff-modal-backdrop" data-modal-close></div>
+    <div class="staff-modal-panel">
+      <button class="staff-modal-close" type="button" aria-label="Close profile" data-modal-close>×</button>
+      <div class="staff-modal-content">
+        <div id="staff-modal-photo" class="staff-modal-photo"></div>
+        <div>
+          <p class="eyebrow" id="staff-modal-department">TEAM MEMBER</p>
+          <h2 id="staff-modal-name"></h2>
+          <p class="staff-modal-role" id="staff-modal-role"></p>
+          <p id="staff-modal-bio"></p>
+          <p class="staff-email"><a class="text-link" id="staff-modal-email" href="" hidden>Email staff member ↗</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container footer-inner">
@@ -101,6 +96,6 @@
     </div>
   </footer>
   <script src="js/script.js" defer></script>
-  <script src="js/staff-organogram.js"></script>
+  <script src="js/staff-organogram.js" defer></script>
 </body>
 </html>
