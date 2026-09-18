@@ -1,4 +1,4 @@
-.products-hero { background: linear-gradient(110deg, rgba(23,23,23,.98), rgba(72,20,23,.92)); }
+.products-hero { background: linear-gradient(110deg, rgba(23,23,23,.72), rgba(72,20,23,.48)), url("../images/hero/factory-main.png") center/cover no-repeat; }
 .products-catalogue { background: var(--surface); }
 .product-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 34px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
 .product-filters { display: flex; flex-wrap: wrap; gap: 10px; }
