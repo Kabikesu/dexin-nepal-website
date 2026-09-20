@@ -19,7 +19,38 @@
   const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const pretty = (value = '') => String(value).replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/\b\w/g, (char) => char.toUpperCase());
   const extension = (path = '') => path.split('?')[0].split('.').pop().toLowerCase();
-  const mediaType = (item) => item.type || (videoExtensions.has(extension(item.path || item.src)) ? 'video' : 'image');
+  const mediaType = (item) => item.type || (videoExtensions.has(extension(item.path || item.src)) ? 'video' : imageExtensions.has(extension(item.path || item.src)) ? 'image' : 'unsupported');
+  const mediaUrl = (value = '') => {
+    const raw = String(value).trim();
+    if (!raw) return '';
+    try {
+      const hashIndex = raw.indexOf('#');
+      const hash = hashIndex >= 0 ? raw.slice(hashIndex) : '';
+      const withoutHash = hashIndex >= 0 ? raw.slice(0, hashIndex) : raw;
+      const queryIndex = withoutHash.indexOf('?');
+      const query = queryIndex >= 0 ? withoutHash.slice(queryIndex) : '';
+      const pathname = queryIndex >= 0 ? withoutHash.slice(0, queryIndex) : withoutHash;
+      return pathname.split('/').map((part) => encodeURIComponent(part)).join('/') + query + hash;
+    } catch {
+      return raw;
+    }
+  };
+  const normalizeItems = (items) => {
+    if (!Array.isArray(items)) return [];
+    const seen = new Set();
+    return items.map((item) => {
+      if (!item || typeof item !== 'object') return null;
+      const src = mediaUrl(item.src || item.path || '');
+      const path = String(item.path || item.src || '').trim();
+      if (!src || !path) return null;
+      const type = mediaType({ ...item, path, src });
+      if (type === 'unsupported') return null;
+      const key = path.toLowerCase();
+      if (seen.has(key)) return null;
+      seen.add(key);
+      return { ...item, src, path, type };
+    }).filter(Boolean);
+  };
 
   const imageFallback = (target) => {
     target.addEventListener('error', () => {
@@ -36,7 +67,7 @@
 
   const coverMarkup = (item) => {
     if (!item) return '<span class="album-cover-placeholder">DXN</span>';
-    if (mediaType(item) === 'video') return `<video src="${escapeHtml(item.src)}" muted playsinline preload="metadata"></video>`;
+    if (mediaType(item) === 'video') return `<video src="${escapeHtml(mediaUrl(item.src))}" muted playsinline preload="metadata"></video>`;
     return `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.name || 'Gallery image')}" loading="lazy">`;
   };
 
@@ -209,9 +240,9 @@
 
   const buildAlbums = (manifest) => {
     const folders = Array.isArray(manifest.folders) ? manifest.folders : [];
-    if (folders.length) return folders.map((folder) => ({ ...folder, id: folder.id || folder.path || folder.title, title: folder.title || pretty(folder.path), categoryLabel: folder.categoryLabel || pretty(folder.category || 'Gallery'), items: Array.isArray(folder.items) ? folder.items : [] })).filter((folder) => folder.items.length);
+    if (folders.length) return folders.map((folder) => ({ ...folder, id: folder.id || folder.path || folder.title, title: folder.title || pretty(folder.path), categoryLabel: folder.categoryLabel || pretty(folder.category || 'Gallery'), items: normalizeItems(folder.items) })).filter((folder) => folder.items.length);
     const legacy = manifest.folders && typeof manifest.folders === 'object' ? manifest.folders : {};
-    return Object.entries(legacy).map(([path, items]) => ({ id: path, path, title: path ? pretty(path.split('/').pop()) : 'Gallery', categoryLabel: path.startsWith('factory') ? 'Factory Images' : path.startsWith('events') ? 'Corporate Events' : path.startsWith('videos') ? 'Video Gallery' : 'Gallery', items: Array.isArray(items) ? items : [] })).filter((folder) => folder.items.length);
+    return Object.entries(legacy).map(([path, items]) => ({ id: path, path, title: path ? pretty(path.split('/').pop()) : 'Gallery', categoryLabel: path.startsWith('factory') ? 'Factory Images' : path.startsWith('events') ? 'Corporate Events' : path.startsWith('videos') ? 'Video Gallery' : 'Gallery', items: normalizeItems(items) })).filter((folder) => folder.items.length);
   };
 
   const load = async () => {
