@@ -197,3 +197,19 @@
 @media (prefers-reduced-motion:reduce) {
   .lightbox-thumb { transition: none; }
 }
+
+
+/* =========================================================
+   FINAL LIGHTBOX MEDIA CONTAINMENT
+   Keep the complete source image/video visible at all times.
+========================================================= */
+.lightbox-media {
+  contain: layout paint;
+}
+
+.lightbox-media img,
+.lightbox-media video {
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
