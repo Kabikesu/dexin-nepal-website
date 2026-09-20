@@ -68,7 +68,7 @@
   const coverMarkup = (item) => {
     if (!item) return '<span class="album-cover-placeholder">DXN</span>';
     if (mediaType(item) === 'video') return `<video src="${escapeHtml(mediaUrl(item.src))}" muted playsinline preload="metadata"></video>`;
-    return `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.name || 'Gallery image')}" loading="lazy">`;
+    return `<img src="${escapeHtml(mediaUrl(item.src))}" alt="${escapeHtml(item.name || 'Gallery image')}" loading="lazy">`;
   };
 
   const renderAlbums = () => {
@@ -102,8 +102,8 @@
     mediaGrid.innerHTML = album.items.length ? album.items.map((item, index) => {
       const type = mediaType(item);
       const content = type === 'video'
-        ? `<video src="${escapeHtml(item.src)}" muted playsinline preload="metadata"></video>`
-        : `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.name || album.title)}" loading="lazy">`;
+        ? `<video src="${escapeHtml(mediaUrl(item.src))}" muted playsinline preload="metadata"></video>`
+        : `<img src="${escapeHtml(mediaUrl(item.src))}" alt="${escapeHtml(item.name || album.title)}" loading="lazy">`;
       return `<button class="media-card" type="button" style="--i:${index}" data-media-index="${index}" aria-label="Open ${escapeHtml(item.name || album.title)}"><span class="media-thumb">${content}<span class="media-type">${type}</span></span><span class="media-name">${escapeHtml(item.name || pretty(item.path || 'Media'))}</span></button>`;
     }).join('') : '<div class="media-empty">This album does not contain any supported media files.</div>';
     mediaGrid.querySelectorAll('img').forEach(imageFallback);
@@ -123,8 +123,8 @@
     lightboxThumbs.innerHTML = album.items.map((item, index) => {
       const type = mediaType(item);
       const content = type === 'video'
-        ? '<video src="' + escapeHtml(item.src) + '" muted playsinline preload="metadata" aria-hidden="true"></video>'
-        : '<img src="' + escapeHtml(item.src) + '" alt="" loading="lazy">';
+        ? '<video src="' + escapeHtml(mediaUrl(item.src)) + '" muted playsinline preload="metadata" aria-hidden="true"></video>'
+        : '<img src="' + escapeHtml(mediaUrl(item.src)) + '" alt="" loading="lazy">';
       return '<button class="lightbox-thumb' + (index === state.activeIndex ? ' is-active' : '') + '" type="button" role="listitem" data-thumb-index="' + index + '" aria-label="View ' + (index + 1) + ' of ' + album.items.length + '"' + (index === state.activeIndex ? ' aria-current="true"' : '') + '>' + content + '</button>';
     }).join('');
     lightboxThumbs.querySelectorAll('img').forEach(imageFallback);
@@ -154,8 +154,8 @@
     lightbox.classList.add('is-changing');
     window.setTimeout(() => {
       media.innerHTML = type === 'video'
-        ? `<video src="${escapeHtml(item.src)}" controls playsinline preload="metadata"></video>`
-        : `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.name || album.title)}">`;
+        ? `<video src="${escapeHtml(mediaUrl(item.src))}" controls playsinline preload="metadata"></video>`
+        : `<img src="${escapeHtml(mediaUrl(item.src))}" alt="${escapeHtml(item.name || album.title)}">`;
       document.getElementById('lightbox-name').textContent = item.name || pretty(item.path || 'Media');
       document.getElementById('lightbox-position').textContent = `${state.activeIndex + 1} / ${album.items.length}`;
       lightbox.querySelector('.lightbox-prev').disabled = album.items.length < 2;
