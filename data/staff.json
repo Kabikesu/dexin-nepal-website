@@ -49,7 +49,7 @@
         {"id":"ram-kumar-chauhan","name":"Mr. Ram Kumar Chauhan","role":"Semi Skilled Operator","photo":"images/staff/ram-kumar-chauhan.png"},
         {"id":"bandana-mishra","name":"Mrs. Bandana Kumari Mishra","role":"Packing Assistant","photo":"images/staff/bandana-mishra.png"}
       ]},
-      {"id":"Nutraceuticals-unit","name":"Nutra Unit","headId":"abhisek-jaiswal","members":[
+      {"id":"nutra-unit","name":"Nutra Unit","headId":"abhisek-jaiswal","members":[
         {"id":"abhisek-jaiswal","name":"Mr. Abhisek Jaiswal","role":"Production Officer","photo":null},
         {"id":"bimal-sinjali-magar","name":"Mr. Bimal Sinjali Magar","role":"Filling Machine Operator","photo":"images/staff/bimal-sinjali-magar.jpeg"},
         {"id":"resham-kumar-raut","name":"Mr. Resham Raut","role":"Filling Machine Operator","photo":"images/staff/resham-kumar-raut.jpeg"},
@@ -65,7 +65,7 @@
       {"id":"gopi-krishna-aryal","name":"Mr. Gopi Krishna Aryal","role":"Microbiologist","photo":null}
     ]},
     {"id":"marketing","name":"Marketing","headId":"vijay-kumar","description":"Marketing and country-level business coordination.","members":[
-      {"id":"vijay-kumar","name":"Mr. Vijay Kumar","role":"Director / Country PIC","photo":null}
+      {"id":"vijay-kumar","name":"Mr. Vijay Kumar","role":"Director / Country PIC","photo":null},
       {"id":"Pralad-jha","name":"Mr. Pralad jha","role":"Marketing Manager","photo":null}
     ]}
   ]
