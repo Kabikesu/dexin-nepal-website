@@ -10,7 +10,8 @@
   const albumCategory = document.getElementById('album-category');
   const albumCount = document.getElementById('album-count');
   const lightbox = document.getElementById('gallery-lightbox');
-  if (!albumGrid || !mediaGrid || !status || !lightbox) return;
+  const lightboxThumbs = document.getElementById('lightbox-thumbs');
+  if (!albumGrid || !mediaGrid || !status || !lightbox || !lightboxThumbs) return;
 
   const state = { albums: [], activeAlbum: null, activeIndex: 0, lastFocused: null, touchStartX: 0, touchStartY: 0, touchActive: false };
   const imageExtensions = new Set(['jpg','jpeg','png','gif','webp','svg','avif']);
@@ -85,6 +86,34 @@
 
   const closeAlbum = () => { state.activeAlbum = null; renderAlbums(); };
 
+  const renderLightboxThumbs = () => {
+    const album = state.activeAlbum;
+    if (!album) return;
+    lightboxThumbs.innerHTML = album.items.map((item, index) => {
+      const type = mediaType(item);
+      const content = type === 'video'
+        ? '<video src="' + escapeHtml(item.src) + '" muted playsinline preload="metadata" aria-hidden="true"></video>'
+        : '<img src="' + escapeHtml(item.src) + '" alt="" loading="lazy">';
+      return '<button class="lightbox-thumb' + (index === state.activeIndex ? ' is-active' : '') + '" type="button" role="listitem" data-thumb-index="' + index + '" aria-label="View ' + (index + 1) + ' of ' + album.items.length + '"' + (index === state.activeIndex ? ' aria-current="true"' : '') + '>' + content + '</button>';
+    }).join('');
+    lightboxThumbs.querySelectorAll('img').forEach(imageFallback);
+    requestAnimationFrame(() => {
+      lightboxThumbs.querySelector('.lightbox-thumb.is-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  };
+
+  const updateLightboxThumbState = () => {
+    lightboxThumbs.querySelectorAll('.lightbox-thumb').forEach((thumb, index) => {
+      const active = index === state.activeIndex;
+      thumb.classList.toggle('is-active', active);
+      if (active) thumb.setAttribute('aria-current', 'true');
+      else thumb.removeAttribute('aria-current');
+    });
+    requestAnimationFrame(() => {
+      lightboxThumbs.querySelector('.lightbox-thumb.is-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  };
+
   const updateLightbox = () => {
     const album = state.activeAlbum;
     if (!album || !album.items.length) return;
@@ -100,6 +129,7 @@
       document.getElementById('lightbox-position').textContent = `${state.activeIndex + 1} / ${album.items.length}`;
       lightbox.querySelector('.lightbox-prev').disabled = album.items.length < 2;
       lightbox.querySelector('.lightbox-next').disabled = album.items.length < 2;
+      updateLightboxThumbState();
       lightbox.classList.remove('is-changing');
     }, 90);
   };
@@ -108,6 +138,7 @@
     if (!state.activeAlbum?.items?.length) return;
     state.lastFocused = document.activeElement;
     state.activeIndex = index;
+    renderLightboxThumbs();
     lightbox.hidden = false;
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
@@ -142,7 +173,16 @@
     if (card) openLightbox(Number(card.dataset.mediaIndex));
   });
   backButton?.addEventListener('click', closeAlbum);
-  lightbox.addEventListener('click', (event) => { if (event.target.closest('[data-lightbox-close]')) closeLightbox(); });
+  lightbox.addEventListener('click', (event) => {
+    if (event.target.closest('[data-lightbox-close]')) {
+      closeLightbox();
+      return;
+    }
+    const thumb = event.target.closest('[data-thumb-index]');
+    if (!thumb) return;
+    state.activeIndex = Number(thumb.dataset.thumbIndex);
+    updateLightbox();
+  });
   document.getElementById('lightbox-prev')?.addEventListener('click', () => stepLightbox(-1));
   document.getElementById('lightbox-next')?.addEventListener('click', () => stepLightbox(1));
 
