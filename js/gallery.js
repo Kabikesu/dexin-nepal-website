@@ -247,7 +247,7 @@
 
   const load = async () => {
     try {
-      const response = await fetch('images.json', { cache: 'no-store' });
+      const response = await fetch(`images.json?v=${Date.now()}`, { cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const manifest = await response.json();
       state.albums = buildAlbums(manifest);
