@@ -245,15 +245,108 @@
     return Object.entries(legacy).map(([path, items]) => ({ id: path, path, title: path ? pretty(path.split('/').pop()) : 'Gallery', categoryLabel: path.startsWith('factory') ? 'Factory Images' : path.startsWith('events') ? 'Corporate Events' : path.startsWith('videos') ? 'Video Gallery' : 'Gallery', items: normalizeItems(items) })).filter((folder) => folder.items.length);
   };
 
+  const buildAutoAlbums = (tree, manifest) => {
+    const manifestAlbums = buildAlbums(manifest);
+    const metadata = new Map();
+
+    manifestAlbums.forEach((album) => {
+      album.items.forEach((item) => {
+        const key = String(item.path || item.src || '').split('?')[0].replace(/^images\\//, '').toLowerCase();
+        metadata.set(key, item);
+      });
+    });
+
+    const files = Array.isArray(tree?.tree)
+      ? tree.tree.filter((entry) =>
+          entry?.type === 'blob' &&
+          entry.path?.startsWith('images/gallery/') &&
+          (imageExtensions.has(extension(entry.path)) || videoExtensions.has(extension(entry.path)))
+        )
+      : [];
+
+    if (!files.length) return manifestAlbums;
+
+    const grouped = new Map();
+
+    files.forEach((entry) => {
+      const relative = entry.path.replace(/^images\\/gallery\\//, '');
+      const parts = relative.split('/');
+      if (parts.length < 2) return;
+
+      const folder = parts.slice(0, -1).join('/');
+      const fileName = parts.at(-1);
+      const manifestItem = metadata.get(entry.path.replace(/^images\\//, '').toLowerCase());
+      const id = folder.toLowerCase();
+
+      if (!grouped.has(id)) {
+        const firstFolder = folder.split('/');
+        grouped.set(id, {
+          id: id,
+          title: firstFolder.at(-1) ? pretty(firstFolder.at(-1)) : 'Gallery',
+          category: 'gallery',
+          categoryLabel: folder.startsWith('events/') ? 'Corporate Events' : folder === 'videos' ? 'Video Gallery' : 'Corporate Images',
+          path: folder,
+          items: []
+        });
+      }
+
+      const type = videoExtensions.has(extension(fileName)) ? 'video' : 'image';
+      grouped.get(id).items.push({
+        ...(manifestItem || {}),
+        src: `images/gallery/${relative}`,
+        path: `gallery/${relative}`,
+        name: manifestItem?.name || pretty(fileName.replace(/\\.[^.]+$/, '')),
+        type
+      });
+    });
+
+    const ordered = [];
+    const used = new Set();
+
+    manifestAlbums.forEach((album) => {
+      const key = String(album.path || '').toLowerCase();
+      const autoAlbum = grouped.get(key);
+      if (autoAlbum) {
+        autoAlbum.title = album.title || autoAlbum.title;
+        autoAlbum.category = album.category || autoAlbum.category;
+        autoAlbum.categoryLabel = album.categoryLabel || autoAlbum.categoryLabel;
+        autoAlbum.id = album.id || autoAlbum.id;
+        ordered.push(autoAlbum);
+        used.add(key);
+      } else if (!String(album.path || '').startsWith('events/') && !String(album.path || '').startsWith('images')) {
+        ordered.push(album);
+      }
+    });
+
+    grouped.forEach((album, key) => {
+      if (!used.has(key)) ordered.push(album);
+    });
+
+    return ordered.filter((album) => album.items.length);
+  };
+
   const load = async () => {
     try {
-      const response = await fetch(`images.json?v=${Date.now()}`, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const manifest = await response.json();
-      state.albums = buildAlbums(manifest);
+      const [manifestResponse, treeResponse] = await Promise.all([
+        fetch(`images.json?v=${Date.now()}`, { cache: 'no-store' }),
+        fetch(`https://api.github.com/repos/Kabikesu/dexin-nepal-website/git/trees/main?recursive=1&t=${Date.now()}`, { cache: 'no-store' })
+      ]);
+
+      if (!manifestResponse.ok) throw new Error(`Manifest HTTP ${manifestResponse.status}`);
+
+      const manifest = await manifestResponse.json();
+
+      if (treeResponse.ok) {
+        const tree = await treeResponse.json();
+        state.albums = buildAutoAlbums(tree, manifest);
+      } else {
+        console.warn('GitHub gallery auto-detection unavailable; using images.json fallback.');
+        state.albums = buildAlbums(manifest);
+      }
+
       renderAlbums();
     } catch (error) {
-      console.error('Gallery manifest load failed:', error);
+      console.error('Gallery load failed:', error);
       status.hidden = false;
       status.textContent = 'Gallery collections are temporarily unavailable.';
     }
