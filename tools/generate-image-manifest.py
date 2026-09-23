@@ -27,8 +27,6 @@ def version(path: Path) -> str:
 def category_label(category: str, folder: str) -> str:
     if category == "factory":
         return "Factory Images"
-    if folder == "videos":
-        return "Video Gallery"
     if folder == "events" or folder.startswith("events/"):
         return "Corporate Events"
     return "Corporate Images"
