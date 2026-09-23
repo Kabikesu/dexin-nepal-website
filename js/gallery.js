@@ -284,7 +284,7 @@
           id: id,
           title: firstFolder.at(-1) ? pretty(firstFolder.at(-1)) : 'Gallery',
           category: 'gallery',
-          categoryLabel: folder.startsWith('events/') ? 'Corporate Events' : folder === 'videos' ? 'Video Gallery' : 'Corporate Images',
+          categoryLabel: folder.startsWith('events/') ? 'Corporate Events' : 'Gallery Album',
           path: folder,
           items: []
         });
