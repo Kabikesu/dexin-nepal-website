@@ -70,6 +70,66 @@
     { id: 'reishi-powder', name: 'Reishi Mushroom Powder - 70 gm', status: 'upcoming', category: 'nutraceuticals', description: 'An upcoming Reishi mushroom powder product.', image: 'images/products/nutraceuticals/reishi-powder-70g.jpg' }
   ];
 
+
+  const productHero = document.getElementById('products-hero-visual');
+  const productHeroOrbit = document.getElementById('products-hero-orbit');
+  let heroRotation = 0;
+  let heroFrame = 0;
+  let heroLastTime = 0;
+
+  const renderProductHero = () => {
+    if (!productHeroOrbit) return;
+
+    productHeroOrbit.innerHTML = products.map((product, index) => `
+      <button class="products-hero-card" type="button" data-hero-product="${product.id}" aria-label="View ${product.name}">
+        <img src="${product.image}" alt="" loading="${index < 8 ? 'eager' : 'lazy'}">
+        <span class="products-hero-card-label">${product.name}</span>
+      </button>
+    `).join('');
+  };
+
+  const animateProductHero = (time) => {
+    if (!productHeroOrbit || !productHero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    if (!heroLastTime) heroLastTime = time;
+    const delta = Math.min(time - heroLastTime, 40);
+    heroLastTime = time;
+    heroRotation = (heroRotation + delta * 0.014) % 360;
+
+    const cards = productHeroOrbit.querySelectorAll('.products-hero-card');
+    const total = cards.length;
+    const width = productHero.clientWidth;
+    const height = productHero.clientHeight;
+    const radiusX = Math.min(width * 0.43, 390);
+    const radiusY = Math.min(height * 0.30, 205);
+    const depth = Math.min(width * 0.30, 245);
+
+    cards.forEach((card, index) => {
+      const angle = ((index / total) * Math.PI * 2) + (heroRotation * Math.PI / 180);
+      const x = Math.sin(angle) * radiusX;
+      const y = Math.cos(angle) * radiusY;
+      const z = Math.cos(angle) * depth;
+      const frontness = (z + depth) / (depth * 2);
+      const scale = 0.68 + (frontness * 0.40);
+      const opacity = 0.28 + (frontness * 0.72);
+      const blur = Math.max(0, (0.42 - frontness) * 2.2);
+      const isFront = Math.cos(angle) > 0.90;
+
+      card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), ${z}px) scale(${scale})`;
+      card.style.zIndex = String(Math.round(frontness * 1000));
+      card.style.opacity = opacity.toFixed(3);
+      card.style.filter = `blur(${blur.toFixed(2)}px)`;
+      card.classList.toggle('is-front', isFront);
+    });
+
+    heroFrame = window.requestAnimationFrame(animateProductHero);
+  };
+
+  renderProductHero();
+  if (productHeroOrbit && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroFrame = window.requestAnimationFrame(animateProductHero);
+  }
+
   const productGrid = document.getElementById('product-grid');
   const filterButtons = document.querySelectorAll('[data-filter]');
   const productCount = document.getElementById('product-count');
@@ -109,7 +169,17 @@
     productCount.textContent = `${visibleProducts.length} product${visibleProducts.length === 1 ? '' : 's'}`;
     productEmpty.hidden = visibleProducts.length !== 0;
 
-    filterButtons.forEach((button) => {
+  
+  if (productHeroOrbit) {
+    productHeroOrbit.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-hero-product]');
+      if (!trigger) return;
+      const product = products.find((item) => item.id === trigger.dataset.heroProduct);
+      if (product) openModal(product);
+    });
+  }
+
+  filterButtons.forEach((button) => {
       const isActive = button.dataset.filter === activeFilter;
       button.classList.toggle('is-active', isActive);
       button.setAttribute('aria-pressed', String(isActive));
