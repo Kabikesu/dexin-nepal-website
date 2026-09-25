@@ -34,22 +34,33 @@
   </header>
 
   <main>
-    <section class="page-hero products-hero">
-      <div class="container products-hero-inner">
+    <section class="products-hero products-hero-modern" aria-labelledby="products-hero-title">
+      <div class="products-hero-noise" aria-hidden="true"></div>
+      <div class="products-hero-topline"><span>PRODUCT</span><a href="#product-catalogue">Explore here <span aria-hidden="true">⌄</span></a></div>
+      <div class="products-hero-inner">
         <div class="products-hero-copy">
-          <p class="eyebrow">OUR PRODUCTS</p>
-          <h1>Products</h1>
-          <p>Explore current and planned product categories associated with Dexin Manufacturing Nepal's coffee and nutraceutical manufacturing operations.</p>
+          <p class="products-hero-kicker">DEXIN MANUFACTURING NEPAL</p>
+          <h1 id="products-hero-title">Made for better.<br><em>Made in Nepal.</em></h1>
+          <p class="products-hero-lead">Explore coffee and nutraceutical products manufactured with quality, precision, and care in Nepal.</p>
+          <div class="products-hero-actions">
+            <a class="products-hero-button products-hero-button-primary" href="#product-catalogue">Explore Products</a>
+            <a class="products-hero-button products-hero-button-secondary" href="manufacturing.html">Our Manufacturing <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
-        <div class="products-hero-visual" id="products-hero-visual" aria-label="Rotating Dexin product showcase">
-          <div class="products-hero-orbit" id="products-hero-orbit"></div>
-          <div class="products-hero-glow" aria-hidden="true"></div>
-          <div class="products-hero-caption" aria-hidden="true">COFFEE · NUTRACEUTICALS</div>
+        <div class="products-hero-orbit" id="products-hero-orbit" aria-label="Featured Dexin products and manufacturing highlights">
+          <a class="products-hero-card hero-card-1" href="manufacturing.html"><span class="products-hero-card-media"><img src="images/hero/factory-main.png" alt="Dexin manufacturing facility"></span><span class="products-hero-card-label">Advanced manufacturing</span></a>
+          <button class="products-hero-card hero-card-2" type="button" data-hero-product="cocozhi"><span class="products-hero-card-media"><img src="images/products/coffee/Cocozhi.jpg" alt="Cocozhi product"></span><span class="products-hero-card-label">Cocozhi</span></button>
+          <button class="products-hero-card hero-card-3" type="button" data-hero-product="gl90"><span class="products-hero-card-media"><img src="images/products/nutraceuticals/Ganocelium GL-90.jpg" alt="Ganocelium GL-90 product"></span><span class="products-hero-card-label">Ganocelium GL-90</span></button>
+          <button class="products-hero-card hero-card-4" type="button" data-hero-product="rg90"><span class="products-hero-card-media"><img src="images/products/nutraceuticals/Reishi Gano RG-90.jpg" alt="Reishi Gano RG-90 product"></span><span class="products-hero-card-label">Reishi Gano RG-90</span></button>
+          <button class="products-hero-card hero-card-5" type="button" data-hero-product="spirulina-powder"><span class="products-hero-card-media"><img src="images/products/nutraceuticals/Spirulina Powder 50g.jpg" alt="Spirulina powder product"></span><span class="products-hero-card-label">Spirulina</span></button>
+          <button class="products-hero-card hero-card-6" type="button" data-hero-product="lingzhi-3in1"><span class="products-hero-card-media"><img src="images/products/coffee/Lingzhi Coffee 3 in 1.jpg" alt="Lingzhi Coffee 3 in 1 product"></span><span class="products-hero-card-label">Lingzhi Coffee 3 in 1</span></button>
+          <div class="products-hero-orbit-glow" aria-hidden="true"></div>
         </div>
       </div>
+      <div class="products-hero-bottomline"><span>COFFEE</span><i></i><span>NUTRACEUTICALS</span><i></i><span>QUALITY MANUFACTURING</span></div>
     </section>
 
-    <section class="section products-catalogue" aria-labelledby="catalogue-title">
+    <section class="section products-catalogue" id="product-catalogue" aria-labelledby="catalogue-title">
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">PRODUCT CATALOGUE</p>
