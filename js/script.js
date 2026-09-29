@@ -111,8 +111,8 @@
 
     productCount.textContent = `${visibleProducts.length} product${visibleProducts.length === 1 ? '' : 's'}`;
     productEmpty.hidden = visibleProducts.length !== 0;
+  };
 
-  
   const enableCardTilt = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(hover: hover)').matches) return;
 
