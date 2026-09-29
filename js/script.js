@@ -70,11 +70,50 @@
     { id: 'reishi-powder', name: 'Reishi Mushroom Powder - 70 gm', status: 'upcoming', category: 'nutraceuticals', description: 'An upcoming Reishi mushroom powder product.', image: 'images/products/nutraceuticals/reishi-powder-70g.jpg' }
   ];
 
+  const filterButtons = Array.from(document.querySelectorAll('#product-filters [data-filter]'));
+  const productGrid = document.getElementById('product-grid');
+  const productCount = document.getElementById('product-count');
+  const productEmpty = document.getElementById('product-empty');
+  const modal = document.getElementById('product-modal');
+  const modalMedia = document.getElementById('modal-product-media');
+  const modalStatus = document.getElementById('modal-product-status');
+  const modalCategory = document.getElementById('modal-product-category');
+  const modalName = document.getElementById('modal-product-name');
+  const modalDescription = document.getElementById('modal-product-description');
+  let lastFocused = null;
 
-  const heroShowcase = document.getElementById('hero-product-showcase');
+  const escapeHtml = (value) => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+
+  const labelForCategory = (category) => category === 'coffee' ? 'Coffee' : 'Nutraceuticals';
+  const labelForStatus = (status) => status === 'upcoming' ? 'Upcoming' : 'Current';
+  const normalizeIndex = (index) => products.length ? ((index % products.length) + products.length) % products.length : 0;
+
+  const openModal = (product) => {
+    if (!modal || !product) return;
+    lastFocused = document.activeElement;
+    modalStatus.textContent = labelForStatus(product.status);
+    modalStatus.classList.toggle('upcoming', product.status === 'upcoming');
+    modalCategory.textContent = labelForCategory(product.category);
+    modalName.textContent = product.name;
+    modalDescription.textContent = product.description;
+    modalMedia.innerHTML = '<img src="' + escapeHtml(product.image) + '" alt="' + escapeHtml(product.name) + '">';
+    const image = modalMedia.querySelector('img');
+    image.addEventListener('error', () => {
+      modalMedia.innerHTML = '<div class="product-media-fallback"><strong>' + escapeHtml(product.name) + '</strong></div>';
+    });
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    window.requestAnimationFrame(() => modal.querySelector('.modal-close')?.focus());
+  };
 
   const closeModal = () => {
-    if (modal.hidden) return;
+    if (!modal || modal.hidden) return;
     modal.classList.add('is-closing');
     window.setTimeout(() => {
       modal.hidden = true;
@@ -85,7 +124,37 @@
     }, 180);
   };
 
-  if (heroShowcase) {
+  const renderProducts = (filter = 'all') => {
+    if (!productGrid) return;
+    const visibleProducts = products.filter((product) =>
+      filter === 'all' || product.status === filter || product.category === filter
+    );
+
+    productGrid.innerHTML = visibleProducts.map((product, index) =>
+      '<article class="product-card is-entering" style="--i:' + index + '">' +
+        '<div class="product-media">' +
+          '<span class="product-badge ' + product.status + '">' + escapeHtml(labelForStatus(product.status)) + '</span>' +
+          '<img data-product-image src="' + escapeHtml(product.image) + '" alt="' + escapeHtml(product.name) + '" loading="lazy">' +
+        '</div>' +
+        '<div class="product-card-body">' +
+          '<div class="product-meta">' +
+            '<span class="product-category">' + escapeHtml(labelForCategory(product.category)) + '</span>' +
+            '<span class="product-status ' + product.status + '">' + escapeHtml(labelForStatus(product.status)) + '</span>' +
+          '</div>' +
+          '<h3>' + escapeHtml(product.name) + '</h3>' +
+          '<p>' + escapeHtml(product.description) + '</p>' +
+          '<button class="product-card-button" type="button" data-product-open="' + escapeHtml(product.id) + '">View product</button>' +
+        '</div>' +
+      '</article>'
+    ).join('');
+
+    productCount.textContent = visibleProducts.length + ' product' + (visibleProducts.length === 1 ? '' : 's');
+    productEmpty.hidden = visibleProducts.length !== 0;
+  };
+
+  const heroShowcase = document.getElementById('hero-product-showcase');
+
+  if (heroShowcase && products.length) {
     const heroRing = document.getElementById('hero-product-ring');
     const heroMain = document.getElementById('hero-product-main');
     const heroMainImage = document.getElementById('hero-product-main-image');
@@ -100,15 +169,13 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const slotConfig = [
-      { offset: -3, x: -390, y: 40, scale: .62, rotate: -10, opacity: .36 },
-      { offset: -2, x: -285, y: 15, scale: .74, rotate: -7, opacity: .62 },
-      { offset: -1, x: -165, y: -4, scale: .88, rotate: -4, opacity: .9 },
-      { offset: 1, x: 165, y: -4, scale: .88, rotate: 4, opacity: .9 },
-      { offset: 2, x: 285, y: 15, scale: .74, rotate: 7, opacity: .62 },
-      { offset: 3, x: 390, y: 40, scale: .62, rotate: 10, opacity: .36 }
+      { offset: -3, x: -445, y: 38, scale: .58, rotate: -12, opacity: .42 },
+      { offset: -2, x: -310, y: 10, scale: .73, rotate: -8, opacity: .68 },
+      { offset: -1, x: -170, y: -7, scale: .88, rotate: -4, opacity: .92 },
+      { offset: 1, x: 170, y: -7, scale: .88, rotate: 4, opacity: .92 },
+      { offset: 2, x: 310, y: 10, scale: .73, rotate: 8, opacity: .68 },
+      { offset: 3, x: 445, y: 38, scale: .58, rotate: 12, opacity: .42 }
     ];
-
-    const normalizeIndex = (index) => (index + products.length) % products.length;
 
     const renderHero = (animate = true) => {
       const product = products[heroIndex];
@@ -116,21 +183,19 @@
       heroMainImage.alt = product.name;
       heroName.textContent = product.name;
       heroType.textContent = labelForCategory(product.category);
-      heroCounter.textContent = `${String(heroIndex + 1).padStart(2, '0')} / ${String(products.length).padStart(2, '0')}`;
+      heroCounter.textContent = String(heroIndex + 1).padStart(2, '0') + ' / ' + String(products.length).padStart(2, '0');
       heroMain.dataset.productId = product.id;
 
       heroRing.innerHTML = slotConfig.map((slot) => {
         const productIndex = normalizeIndex(heroIndex + slot.offset);
         const item = products[productIndex];
-        return `
-          <button class="hero-product-orbit-item" type="button" data-hero-index="${productIndex}" aria-label="Show ${item.name}">
-            <span class="hero-product-orbit-media">
-              <img src="${item.image}" alt="${item.name}" loading="eager">
-              <span class="hero-product-image-fallback" aria-hidden="true">${item.name}</span>
-            </span>
-            <span class="hero-product-orbit-label">${item.name}</span>
-          </button>
-        `;
+        return '<button class="hero-product-orbit-item" type="button" data-hero-index="' + productIndex + '" aria-label="Show ' + escapeHtml(item.name) + '">' +
+          '<span class="hero-product-orbit-media">' +
+            '<img src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.name) + '" loading="eager">' +
+            '<span class="hero-product-image-fallback" aria-hidden="true">' + escapeHtml(item.name) + '</span>' +
+          '</span>' +
+          '<span class="hero-product-orbit-label">' + escapeHtml(item.name) + '</span>' +
+        '</button>';
       }).join('');
 
       heroRing.querySelectorAll('.hero-product-orbit-item').forEach((item) => {
@@ -139,27 +204,30 @@
         const signedDelta = delta > products.length / 2 ? delta - products.length : delta;
         const slot = slotConfig.find((entry) => entry.offset === signedDelta);
         if (!slot) return;
-        item.style.transform = `translate(-50%, -50%) translate(${slot.x}px, ${slot.y}px) rotate(${slot.rotate}deg) scale(${slot.scale})`;
+
+        item.style.setProperty('--slot-x', slot.x + 'px');
+        item.style.setProperty('--slot-y', slot.y + 'px');
+        item.style.setProperty('--slot-scale', slot.scale);
+        item.style.setProperty('--slot-rotate', slot.rotate + 'deg');
         item.style.opacity = String(slot.opacity);
-        item.style.zIndex = String(20 - Math.abs(slot.offset));
-        item.classList.toggle('is-front', Math.abs(slot.offset) === 1);
+        item.style.zIndex = String(30 - Math.abs(slot.offset));
+
         item.addEventListener('click', () => {
           heroIndex = productIndex;
           renderHero(true);
           restartHeroTimer();
         });
-        const image = item.querySelector('img');
-        image.addEventListener('error', () => image.closest('.hero-product-orbit-media').classList.add('is-missing'));
+
+        item.querySelector('img')?.addEventListener('error', (event) => {
+          event.currentTarget.closest('.hero-product-orbit-media')?.classList.add('is-missing');
+        });
       });
 
-      if (animate) {
-        heroShowcase.classList.remove('is-changing');
-        void heroShowcase.offsetWidth;
-        heroShowcase.classList.add('is-changing');
-      }
+      heroShowcase.classList.toggle('is-changing', animate);
+      if (animate) window.setTimeout(() => heroShowcase.classList.remove('is-changing'), 650);
     };
 
-    const advanceHero = (step) => {
+    const advanceHero = (step = 1) => {
       heroIndex = normalizeIndex(heroIndex + step);
       renderHero(true);
     };
@@ -173,7 +241,7 @@
 
     const restartHeroTimer = () => {
       stopHeroTimer();
-      if (!reduceMotion) heroTimer = window.setInterval(() => advanceHero(1), 2800);
+      if (!reduceMotion) heroTimer = window.setInterval(() => advanceHero(1), 3000);
     };
 
     heroPrev?.addEventListener('click', () => {
@@ -213,17 +281,24 @@
   }
 
   filterButtons.forEach((button) => {
-    button.addEventListener('click', () => renderProducts(button.dataset.filter));
+    button.addEventListener('click', () => {
+      filterButtons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      renderProducts(button.dataset.filter);
+    });
   });
 
-  productGrid.addEventListener('click', (event) => {
+  productGrid?.addEventListener('click', (event) => {
     const trigger = event.target.closest('[data-product-open]');
     if (!trigger) return;
     const product = products.find((item) => item.id === trigger.dataset.productOpen);
     if (product) openModal(product);
   });
 
-  modal.addEventListener('click', (event) => {
+  modal?.addEventListener('click', (event) => {
     if (event.target.closest('[data-modal-close]')) closeModal();
   });
 
