@@ -71,103 +71,7 @@
   ];
 
 
-  const productHeroOrbit = document.getElementById('products-hero-orbit');
-
-  const productGrid = document.getElementById('product-grid');
-  const filterButtons = document.querySelectorAll('[data-filter]');
-  const productCount = document.getElementById('product-count');
-  const productEmpty = document.getElementById('product-empty');
-  const modal = document.getElementById('product-modal');
-
-  if (!productGrid || !modal) return;
-
-  let activeFilter = 'all';
-  let lastFocused = null;
-
-  const labelForStatus = (status) => status === 'upcoming' ? 'Upcoming' : 'Current';
-  const labelForCategory = (category) => category === 'coffee' ? 'Coffee' : 'Nutraceuticals';
-
-  const renderProducts = (filter = 'all') => {
-    activeFilter = filter;
-    const visibleProducts = products.filter((product) => filter === 'all' || product.status === filter || product.category === filter);
-
-    productGrid.innerHTML = visibleProducts.map((product, index) => `
-      <article class="product-card is-entering" style="--i:${index}" data-product-id="${product.id}">
-        <div class="product-media">
-          <span class="product-badge ${product.status === 'upcoming' ? 'upcoming' : ''} ${product.id === 'cordyceps-coffee' ? 'top' : ''}">${product.status === 'upcoming' ? 'Upcoming' : product.id === 'cordyceps-coffee' ? 'Featured' : 'Product'}</span>
-          <img data-product-image src="${product.image}" alt="${product.name}" loading="lazy">
-        </div>
-        <div class="product-card-body">
-          <div class="product-meta">
-            <span class="product-category">${labelForCategory(product.category)}</span>
-            <span class="product-status ${product.status === 'upcoming' ? 'upcoming' : ''}">${labelForStatus(product.status)}</span>
-          </div>
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <button class="product-card-button" type="button" data-product-open="${product.id}">View Details</button>
-        </div>
-      </article>
-    `).join('');
-
-    productCount.textContent = `${visibleProducts.length} product${visibleProducts.length === 1 ? '' : 's'}`;
-    productEmpty.hidden = visibleProducts.length !== 0;
-  };
-
-  const enableCardTilt = () => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(hover: hover)').matches) return;
-
-    productGrid.querySelectorAll('.product-card').forEach((card) => {
-      let frame = 0;
-      let pendingX = 0;
-      let pendingY = 0;
-
-      const reset = () => {
-        window.cancelAnimationFrame(frame);
-        card.style.transform = '';
-      };
-
-      card.addEventListener('pointermove', (event) => {
-        const rect = card.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - 0.5;
-        const y = (event.clientY - rect.top) / rect.height - 0.5;
-        pendingX = x;
-        pendingY = y;
-
-        if (frame) return;
-        frame = window.requestAnimationFrame(() => {
-          card.style.transform = `translate3d(0,-7px,0) perspective(900px) rotateX(${pendingY * -5}deg) rotateY(${pendingX * 5}deg)`;
-          frame = 0;
-        });
-      }, { passive: true });
-
-      card.addEventListener('pointerleave', reset, { passive: true });
-    });
-  };
-
-  const openModal = (product) => {
-    lastFocused = document.activeElement;
-    document.getElementById('modal-product-status').textContent = labelForStatus(product.status);
-    document.getElementById('modal-product-status').className = `product-status ${product.status === 'upcoming' ? 'upcoming' : ''}`;
-    document.getElementById('modal-product-category').textContent = labelForCategory(product.category);
-    document.getElementById('modal-product-name').textContent = product.name;
-    document.getElementById('modal-product-description').textContent = product.description;
-
-    const media = document.getElementById('modal-product-media');
-    media.innerHTML = `<img data-product-image src="${product.image}" alt="${product.name}">`;
-    modal.hidden = false;
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-    requestAnimationFrame(() => modal.querySelector('.modal-close')?.focus());
-  };
-
-  if (productHeroOrbit) {
-    productHeroOrbit.querySelectorAll('[data-hero-product]').forEach((card) => {
-      card.addEventListener('click', () => {
-        const product = products.find((item) => item.id === card.dataset.heroProduct);
-        if (product) openModal(product);
-      });
-    });
-  }
+  const heroShowcase = document.getElementById('hero-product-showcase');
 
   const closeModal = () => {
     if (modal.hidden) return;
@@ -180,6 +84,133 @@
       lastFocused?.focus();
     }, 180);
   };
+
+  if (heroShowcase) {
+    const heroRing = document.getElementById('hero-product-ring');
+    const heroMain = document.getElementById('hero-product-main');
+    const heroMainImage = document.getElementById('hero-product-main-image');
+    const heroName = document.getElementById('hero-product-name');
+    const heroType = document.getElementById('hero-product-type');
+    const heroCounter = document.getElementById('hero-product-counter');
+    const heroPrev = document.getElementById('hero-product-prev');
+    const heroNext = document.getElementById('hero-product-next');
+
+    let heroIndex = Math.max(0, products.findIndex((product) => product.id === 'cocozhi'));
+    let heroTimer = null;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const slotConfig = [
+      { offset: -3, x: -390, y: 40, scale: .62, rotate: -10, opacity: .36 },
+      { offset: -2, x: -285, y: 15, scale: .74, rotate: -7, opacity: .62 },
+      { offset: -1, x: -165, y: -4, scale: .88, rotate: -4, opacity: .9 },
+      { offset: 1, x: 165, y: -4, scale: .88, rotate: 4, opacity: .9 },
+      { offset: 2, x: 285, y: 15, scale: .74, rotate: 7, opacity: .62 },
+      { offset: 3, x: 390, y: 40, scale: .62, rotate: 10, opacity: .36 }
+    ];
+
+    const normalizeIndex = (index) => (index + products.length) % products.length;
+
+    const renderHero = (animate = true) => {
+      const product = products[heroIndex];
+      heroMainImage.src = product.image;
+      heroMainImage.alt = product.name;
+      heroName.textContent = product.name;
+      heroType.textContent = labelForCategory(product.category);
+      heroCounter.textContent = `${String(heroIndex + 1).padStart(2, '0')} / ${String(products.length).padStart(2, '0')}`;
+      heroMain.dataset.productId = product.id;
+
+      heroRing.innerHTML = slotConfig.map((slot) => {
+        const productIndex = normalizeIndex(heroIndex + slot.offset);
+        const item = products[productIndex];
+        return `
+          <button class="hero-product-orbit-item" type="button" data-hero-index="${productIndex}" aria-label="Show ${item.name}">
+            <span class="hero-product-orbit-media">
+              <img src="${item.image}" alt="${item.name}" loading="eager">
+              <span class="hero-product-image-fallback" aria-hidden="true">${item.name}</span>
+            </span>
+            <span class="hero-product-orbit-label">${item.name}</span>
+          </button>
+        `;
+      }).join('');
+
+      heroRing.querySelectorAll('.hero-product-orbit-item').forEach((item) => {
+        const productIndex = Number(item.dataset.heroIndex);
+        const delta = (productIndex - heroIndex + products.length) % products.length;
+        const signedDelta = delta > products.length / 2 ? delta - products.length : delta;
+        const slot = slotConfig.find((entry) => entry.offset === signedDelta);
+        if (!slot) return;
+        item.style.transform = `translate(-50%, -50%) translate(${slot.x}px, ${slot.y}px) rotate(${slot.rotate}deg) scale(${slot.scale})`;
+        item.style.opacity = String(slot.opacity);
+        item.style.zIndex = String(20 - Math.abs(slot.offset));
+        item.classList.toggle('is-front', Math.abs(slot.offset) === 1);
+        item.addEventListener('click', () => {
+          heroIndex = productIndex;
+          renderHero(true);
+          restartHeroTimer();
+        });
+        const image = item.querySelector('img');
+        image.addEventListener('error', () => image.closest('.hero-product-orbit-media').classList.add('is-missing'));
+      });
+
+      if (animate) {
+        heroShowcase.classList.remove('is-changing');
+        void heroShowcase.offsetWidth;
+        heroShowcase.classList.add('is-changing');
+      }
+    };
+
+    const advanceHero = (step) => {
+      heroIndex = normalizeIndex(heroIndex + step);
+      renderHero(true);
+    };
+
+    const stopHeroTimer = () => {
+      if (heroTimer) {
+        window.clearInterval(heroTimer);
+        heroTimer = null;
+      }
+    };
+
+    const restartHeroTimer = () => {
+      stopHeroTimer();
+      if (!reduceMotion) heroTimer = window.setInterval(() => advanceHero(1), 2800);
+    };
+
+    heroPrev?.addEventListener('click', () => {
+      advanceHero(-1);
+      restartHeroTimer();
+    });
+
+    heroNext?.addEventListener('click', () => {
+      advanceHero(1);
+      restartHeroTimer();
+    });
+
+    heroMain?.addEventListener('click', () => {
+      const product = products.find((item) => item.id === heroMain.dataset.productId);
+      if (product) openModal(product);
+    });
+
+    heroShowcase.addEventListener('mouseenter', stopHeroTimer);
+    heroShowcase.addEventListener('mouseleave', restartHeroTimer);
+    heroShowcase.addEventListener('focusin', stopHeroTimer);
+    heroShowcase.addEventListener('focusout', (event) => {
+      if (!heroShowcase.contains(event.relatedTarget)) restartHeroTimer();
+    });
+
+    heroMainImage.addEventListener('error', () => {
+      heroMainImage.style.display = 'none';
+      heroMain.classList.add('has-image-fallback');
+    });
+
+    heroMainImage.addEventListener('load', () => {
+      heroMainImage.style.display = '';
+      heroMain.classList.remove('has-image-fallback');
+    });
+
+    renderHero(false);
+    restartHeroTimer();
+  }
 
   filterButtons.forEach((button) => {
     button.addEventListener('click', () => renderProducts(button.dataset.filter));
