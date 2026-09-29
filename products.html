@@ -47,13 +47,22 @@
             <a class="products-hero-button products-hero-button-secondary" href="manufacturing.html">Our Manufacturing <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <div class="hero-product-showcase" id="hero-product-showcase" aria-label="Rotating Dexin product showcase">
-          <div class="hero-product-ring" id="hero-product-ring" aria-hidden="true"></div>
-          <div class="hero-product-main"><img id="hero-product-main-image" src="images/products/coffee/Cocozhi.jpg" alt="Dexin product" fetchpriority="high"></div>
-          <div class="hero-product-fixed-caption"><small>Now showcasing</small><h2 id="hero-product-name">Cocozhi</h2><span id="hero-product-type">Coffee</span></div>
-          <span class="hero-product-counter" id="hero-product-counter" aria-hidden="true">01 / 01</span>
+        <div class="hero-product-showcase" id="hero-product-showcase" aria-label="Rotating Dexin product gallery">
+          <button class="hero-product-nav hero-product-prev" id="hero-product-prev" type="button" aria-label="Previous product">‹</button>
+          <div class="hero-product-ring" id="hero-product-ring"></div>
+          <button class="hero-product-main" id="hero-product-main" type="button" aria-label="View current product details">
+            <img id="hero-product-main-image" src="images/products/coffee/Cocozhi.jpg" alt="Cocozhi" fetchpriority="high">
+          </button>
+          <div class="hero-product-fixed-caption" aria-live="polite">
+            <small>Now showcasing</small>
+            <h2 id="hero-product-name">Cocozhi</h2>
+            <span id="hero-product-type">Coffee</span>
+          </div>
+          <span class="hero-product-counter" id="hero-product-counter" aria-hidden="true">08 / 21</span>
+          <button class="hero-product-nav hero-product-next" id="hero-product-next" type="button" aria-label="Next product">›</button>
         </div>
-      <div class="products-hero-bottomline"><span>COFFEE</span><i></i><span>NUTRACEUTICALS</span><i></i><span>QUALITY MANUFACTURING</span></div>
+        <div class="products-hero-bottomline"><span>COFFEE</span><i></i><span>NUTRACEUTICALS</span><i></i><span>ROTATING PRODUCT GALLERY</span></div>
+      </div>
     </section>
 
     <section class="section products-catalogue" id="product-catalogue" aria-labelledby="catalogue-title">
