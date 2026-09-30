@@ -169,12 +169,12 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const slotConfig = [
-      { offset: -3, x: -445, y: 38, scale: .58, rotate: -12, opacity: .42 },
-      { offset: -2, x: -310, y: 10, scale: .73, rotate: -8, opacity: .68 },
-      { offset: -1, x: -170, y: -7, scale: .88, rotate: -4, opacity: .92 },
-      { offset: 1, x: 170, y: -7, scale: .88, rotate: 4, opacity: .92 },
-      { offset: 2, x: 310, y: 10, scale: .73, rotate: 8, opacity: .68 },
-      { offset: 3, x: 445, y: 38, scale: .58, rotate: 12, opacity: .42 }
+      { offset: -3, x: -500, y: 42, scale: .56, rotate: -12, opacity: .42 },
+      { offset: -2, x: -350, y: 14, scale: .72, rotate: -8, opacity: .68 },
+      { offset: -1, x: -210, y: -8, scale: .86, rotate: -4, opacity: .94 },
+      { offset: 1, x: 210, y: -8, scale: .86, rotate: 4, opacity: .94 },
+      { offset: 2, x: 350, y: 14, scale: .72, rotate: 8, opacity: .68 },
+      { offset: 3, x: 500, y: 42, scale: .56, rotate: 12, opacity: .42 }
     ];
 
     const renderHero = (animate = true) => {
