@@ -481,8 +481,8 @@
   position:absolute;
   left:50%;
   top:59%;
-  width:min(1160px,calc(100% - 40px));
-  height:390px;
+  width:min(1280px,calc(100% - 24px));
+  height:410px;
   transform:translate(-50%,-50%);
   z-index:12;
   isolation:isolate;
@@ -507,8 +507,8 @@
 }
 
 .hero-product-ring::before{
-  width:850px;
-  height:275px;
+  width:1020px;
+  height:300px;
   border:1px solid rgba(245,91,35,.35);
   box-shadow:
     0 0 28px rgba(245,91,35,.14),
@@ -516,8 +516,8 @@
 }
 
 .hero-product-ring::after{
-  width:690px;
-  height:225px;
+  width:820px;
+  height:245px;
   border:1px solid rgba(255,255,255,.08);
 }
 
@@ -525,8 +525,8 @@
   position:absolute;
   left:calc(50% + var(--slot-x));
   top:calc(49% + var(--slot-y));
-  width:148px;
-  height:192px;
+  width:156px;
+  height:202px;
   padding:8px;
   display:flex;
   flex-direction:column;
@@ -630,8 +630,8 @@
   left:50%;
   top:49%;
   z-index:30;
-  width:270px;
-  height:315px;
+  width:250px;
+  height:300px;
   padding:20px;
   border:1px solid rgba(255,139,74,.95);
   border-radius:25px;
