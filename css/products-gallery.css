@@ -490,10 +490,7 @@
 
 .hero-product-ring{
   position:absolute;
-  left:50%;
-  top:49%;
-  width:1px;
-  height:1px;
+  inset:0;
   z-index:8;
   perspective:1200px;
 }
@@ -526,8 +523,8 @@
 
 .hero-product-orbit-item{
   position:absolute;
-  left:0;
-  top:0;
+  left:calc(50% + var(--slot-x));
+  top:calc(49% + var(--slot-y));
   width:148px;
   height:192px;
   padding:8px;
@@ -542,18 +539,20 @@
   cursor:pointer;
   transform:
     translate(-50%,-50%)
-    translate3d(var(--slot-x),var(--slot-y),0)
+    scale(var(--slot-scale))
     rotateY(var(--slot-rotate))
     rotateZ(var(--slot-rotate));
   transform-origin:center center;
   transition:
+    left .7s cubic-bezier(.2,.8,.2,1),
+    top .7s cubic-bezier(.2,.8,.2,1),
     transform .7s cubic-bezier(.2,.8,.2,1),
     opacity .7s ease,
     filter .7s ease,
     border-color .25s ease,
     box-shadow .25s ease;
   overflow:hidden;
-  will-change:transform,opacity;
+  will-change:left,top,transform,opacity;
   animation:heroOrbitCardIn .7s ease both;
 }
 
@@ -813,13 +812,7 @@
   .hero-product-ring::after{width:570px;height:195px}
   .hero-product-showcase{width:calc(100% - 20px)}
   .hero-product-main{width:235px;height:280px}
-  .hero-product-orbit-item{
-    transform:
-      translate(-50%,-50%)
-      translate3d(calc(var(--slot-x) * .78),calc(var(--slot-y) * .78),0)
-      rotateY(var(--slot-rotate))
-      rotateZ(var(--slot-rotate));
-  }
+
 }
 
 @media(max-width:900px){
@@ -832,13 +825,7 @@
   .hero-product-ring::after{width:450px;height:165px}
   .hero-product-main{width:205px;height:255px}
   .hero-product-nav{width:40px;height:40px}
-  .hero-product-orbit-item{
-    transform:
-      translate(-50%,-50%)
-      translate3d(calc(var(--slot-x) * .64),calc(var(--slot-y) * .64),0)
-      rotateY(var(--slot-rotate))
-      rotateZ(var(--slot-rotate));
-  }
+
 }
 
 @media(max-width:650px){
@@ -857,12 +844,7 @@
   .hero-product-prev{left:7px}
   .hero-product-next{right:7px}
   .hero-product-counter{right:7px;bottom:-57px;font-size:.48rem}
-  .hero-product-orbit-item{
-    transform:
-      translate(-50%,-50%)
-      translate3d(calc(var(--slot-x) * .38),calc(var(--slot-y) * .38),0)
-      rotateZ(var(--slot-rotate));
-  }
+
 }
 
 @media(max-width:420px){
