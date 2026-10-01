@@ -863,3 +863,277 @@
   .hero-product-main::after{animation:none}
   .hero-product-showcase.is-changing .hero-product-main{animation:none}
 }
+
+
+/* =========================================================
+   PRODUCTS HERO — LOWER PRODUCT SHOWCASE LAYOUT
+   Keep the hero message clear above; product coverflow lives
+   in its own smaller lower stage.
+   ========================================================= */
+
+.products-hero-modern .hero-product-showcase{
+  top:74%;
+  width:min(1160px,calc(100% - 40px));
+  height:310px;
+}
+
+.hero-product-ring::before{
+  width:900px;
+  height:245px;
+}
+
+.hero-product-ring::after{
+  width:720px;
+  height:200px;
+}
+
+.hero-product-orbit-item{
+  width:124px;
+  height:164px;
+  padding:6px;
+  border-radius:14px;
+}
+
+.hero-product-orbit-label{
+  min-height:29px;
+  padding:5px 3px 2px;
+  font-size:.54rem;
+}
+
+.hero-product-main{
+  width:185px;
+  height:225px;
+  padding:13px;
+  border-radius:20px;
+}
+
+.hero-product-main::before{
+  inset:6px;
+  border-radius:15px;
+}
+
+.hero-product-fixed-caption{
+  bottom:-34px;
+  width:min(360px,70%);
+  padding:7px 14px 8px;
+}
+
+.hero-product-fixed-caption small{
+  font-size:.43rem;
+}
+
+.hero-product-fixed-caption h2{
+  margin:2px 0 1px;
+  font-size:clamp(.82rem,1.35vw,1.05rem);
+}
+
+.hero-product-fixed-caption span{
+  font-size:.46rem;
+}
+
+.hero-product-counter{
+  right:2%;
+  bottom:-6px;
+  font-size:.52rem;
+}
+
+.hero-product-nav{
+  top:50%;
+  width:42px;
+  height:42px;
+}
+
+.hero-product-prev{left:1%}
+.hero-product-next{right:1%}
+
+@media(max-width:1100px){
+  .products-hero-modern .hero-product-showcase{
+    top:75%;
+    height:290px;
+  }
+
+  .hero-product-orbit-item{
+    width:105px;
+    height:142px;
+  }
+
+  .hero-product-ring::before{
+    width:720px;
+    height:215px;
+  }
+
+  .hero-product-ring::after{
+    width:580px;
+    height:175px;
+  }
+
+  .hero-product-main{
+    width:165px;
+    height:205px;
+    padding:11px;
+  }
+}
+
+@media(max-width:900px){
+  .products-hero-modern{
+    min-height:900px;
+  }
+
+  .products-hero-inner{
+    min-height:900px;
+  }
+
+  .products-hero-copy{
+    top:82px;
+  }
+
+  .products-hero-modern .hero-product-showcase{
+    top:76%;
+    height:270px;
+  }
+
+  .hero-product-orbit-item{
+    width:88px;
+    height:122px;
+  }
+
+  .hero-product-ring::before{
+    width:610px;
+    height:185px;
+  }
+
+  .hero-product-ring::after{
+    width:490px;
+    height:150px;
+  }
+
+  .hero-product-main{
+    width:145px;
+    height:185px;
+    padding:10px;
+  }
+
+  .hero-product-fixed-caption{
+    bottom:-32px;
+    width:60%;
+  }
+
+  .hero-product-nav{
+    width:38px;
+    height:38px;
+  }
+}
+
+@media(max-width:650px){
+  .products-hero-modern{
+    min-height:870px;
+  }
+
+  .products-hero-inner{
+    min-height:870px;
+  }
+
+  .products-hero-copy{
+    top:74px;
+  }
+
+  .products-hero-modern .hero-product-showcase{
+    top:77%;
+    width:100%;
+    height:230px;
+  }
+
+  .hero-product-orbit-item{
+    width:64px;
+    height:92px;
+    padding:4px;
+    border-radius:10px;
+  }
+
+  .hero-product-orbit-label{
+    min-height:22px;
+    font-size:.42rem;
+  }
+
+  .hero-product-ring::before{
+    width:420px;
+    height:140px;
+  }
+
+  .hero-product-ring::after{
+    width:335px;
+    height:112px;
+  }
+
+  .hero-product-main{
+    width:118px;
+    height:150px;
+    padding:8px;
+    border-radius:15px;
+  }
+
+  .hero-product-main::before{
+    inset:5px;
+    border-radius:11px;
+  }
+
+  .hero-product-fixed-caption{
+    bottom:-30px;
+    width:64%;
+    padding:6px 9px 7px;
+  }
+
+  .hero-product-fixed-caption small{
+    font-size:.38rem;
+  }
+
+  .hero-product-fixed-caption h2{
+    font-size:.78rem;
+  }
+
+  .hero-product-fixed-caption span{
+    font-size:.4rem;
+  }
+
+  .hero-product-counter{
+    right:6px;
+    bottom:-52px;
+    font-size:.43rem;
+  }
+
+  .hero-product-nav{
+    width:32px;
+    height:32px;
+    font-size:1.2rem;
+  }
+
+  .hero-product-prev{left:5px}
+  .hero-product-next{right:5px}
+}
+
+@media(max-width:420px){
+  .products-hero-modern .hero-product-showcase{
+    top:78%;
+    height:215px;
+  }
+
+  .hero-product-orbit-item{
+    width:56px;
+    height:82px;
+  }
+
+  .hero-product-main{
+    width:104px;
+    height:135px;
+  }
+
+  .hero-product-ring::before{
+    width:350px;
+    height:125px;
+  }
+
+  .hero-product-ring::after{
+    width:280px;
+    height:100px;
+  }
+}
